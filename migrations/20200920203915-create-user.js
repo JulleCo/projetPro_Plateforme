@@ -24,6 +24,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      admin:{
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
+      accessCode: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+// const NotFoudError = require("../Middleware/NotFound_Handler");
+const userController = require("../Controllers/userController");
 
 router.get("/", (req, res) => {
   res.json({
@@ -7,11 +9,10 @@ router.get("/", (req, res) => {
   });
 });
 
+// Route USER
+router.post("/signup", userController.signup);
+
 // Gestion des erreurs
-router.use("*", (req, res) => {
-  res.status(404).json({
-    error: "Petit problème en cours",
-  });
-});
+// router.use("/*", NotFoudError);
 
 module.exports = router;
