@@ -1,4 +1,4 @@
-const { SERVER_ERROR } = require("../Status_Code");
+const { SERVER_ERROR } = require("../status_Code");
 
 module.exports = class ServerError extends Error {
   constructor(title, description, ...params) {

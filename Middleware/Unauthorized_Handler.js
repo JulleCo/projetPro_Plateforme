@@ -1,4 +1,4 @@
-const UnauthorizedError = require("../utils/errors/UnauthorizedError");
+const UnauthorizedError = require("../utils/errors/unauthorizedError");
 
 module.exports = (request, response, next) => {
   throw new UnauthorizedError(

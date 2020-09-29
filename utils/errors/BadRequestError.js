@@ -1,4 +1,4 @@
-const { BAD_REQUEST } = require("../Status_Code");
+const { BAD_REQUEST } = require("../status_Code");
 
 module.exports = class BadRequestError extends Error {
   constructor(title, description, ...params) {
