@@ -9,6 +9,7 @@ const {
   BadRequestError,
   ConflictError,
   UnauthorizedError,
+  NotFoundError,
   ServerError,
 } = require("../utils/errors");
 
@@ -79,6 +80,51 @@ module.exports = {
       throw new ConflictError(
         "Conflict Error",
         "An account already exist with that email"
+      );
+    }
+  },
+
+  signin: async (request, response) => {
+    const user = {
+      email: request.body.email,
+      password: request.body.password,
+    };
+
+    for (const key in user) {
+      if (user[key] == null) {
+        throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
+      }
+    }
+
+    const isMatch = await models.User.findOne({
+      where: {
+        email: user.email,
+      },
+    });
+
+    if (isMatch) {
+      bcrypt.compare(user.password, isMatch.password, (error, resBcrypt) => {
+        if (resBcrypt) {
+          return response.status(200).json({
+            token: jwtUtils.generateTokenForUser(isMatch),
+            user: {
+              role: isMatch.role,
+              firstName: isMatch.firstName,
+              lastName: isMatch.lastName,
+              email: isMatch.email,
+            },
+          });
+        } else {
+          throw new UnauthorizedError(
+            "Unauthorized access",
+            "Your password is incorrect"
+          );
+        }
+      });
+    } else {
+      throw new NotFoundError(
+        "Resource not found",
+        "This account does not exist"
       );
     }
   },

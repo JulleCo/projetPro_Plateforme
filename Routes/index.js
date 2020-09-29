@@ -11,8 +11,6 @@ router.get("/", (req, res) => {
 
 // Route USER
 router.post("/signup", userController.signup);
-
-// Gestion des erreurs
-// router.use("/*", NotFoudError);
+router.post("/signin", userController.signin);
 
 module.exports = router;
