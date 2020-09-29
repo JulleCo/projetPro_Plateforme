@@ -1,23 +1,23 @@
 const express = require("express");
-require('express-async-errors');
+require("express-async-errors");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 
-const router = require("./Routes");
-const NotFoundError = require("./Middleware/NotFound_Handler");
+const router = require("./routes");
+const {errorHandler, notFoundHandler} = require("./middleware");
 
 let server = express();
 
 server.use(morgan("dev"));
 
-server.use(bodyParser.json());
-server.use(bodyParser.urlencoded({ extended: true }));
 server.use("/", cors());
+server.use(bodyParser.json());
 
 server.use("/", router);
 
-server.use(NotFoundError);
+server.use("*", notFoundHandler);
+server.use(errorHandler);
 
 const port = 1234;
 server.listen(port, () => {

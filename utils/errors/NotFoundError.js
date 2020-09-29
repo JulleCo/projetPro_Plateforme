@@ -1,4 +1,4 @@
-const { NOT_FOUND } = require("../Status_Code");
+const { NOT_FOUND } = require("../status_Code");
 
 module.exports = class NotFoundError extends Error {
   constructor(title, description, ...params) {

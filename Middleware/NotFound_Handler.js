@@ -1,8 +1,8 @@
-const NotFoundError = require("../utils/errors/NotFoundError");
+const notFoundError = require("../utils/errors/notFoundError");
 
-module.exports = (request, response, next) => {
-  throw new NotFoundError(
-    "Ressource non trouvée",
-    "Ressource demandée introuvable. Vérifiez le chemin de l'URL et réessayez."
+module.exports = () => {
+  throw new notFoundError(
+    "Resource not found",
+    "Requested resource not found. Check the URL path and try again."
   );
 };
