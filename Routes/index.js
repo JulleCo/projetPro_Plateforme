@@ -13,6 +13,11 @@ router.post("/signup", userController.signup);
 router.post("/signin", userController.signin);
 
 // Routes PLACE
-router.post("/place", placeController.addPlace);
+router.post("/addPlace", placeController.addPlace);
+router.get("/places", placeController.getPlaces);
+
+router.get("/places/placeid=:id", placeController.getPlaceById);
+router.get("/places/username=:userName", placeController.getPlaceByUser);
+
 
 module.exports = router;

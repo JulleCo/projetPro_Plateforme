@@ -4,6 +4,7 @@ const {
   BadRequestError,
   ConflictError,
   UnauthorizedError,
+  NotFoundError,
 } = require("../utils/errors");
 
 module.exports = {
@@ -52,5 +53,82 @@ module.exports = {
       description: newPlace.description,
       picture: newPlace.picture,
     });
+  },
+  getPlaces: async (request, response) => {
+    const placesFound = await models.Place.findAll({
+      attributes: [
+        "id",
+        "type",
+        "userId",
+        "location",
+        "animaux",
+        "personMax",
+        "description",
+        "picture",
+      ],
+    });
+
+    response.status(200).json(placesFound);
+  },
+  getPlaceById: async (request, response) => {
+    const foundPlaceById = await models.Place.findOne({
+      attributes: [
+        "id",
+        "type",
+        "userId",
+        "location",
+        "animaux",
+        "personMax",
+        "description",
+        "picture",
+      ],
+      where: {
+        id: request.params.id,
+      },
+    });
+
+    if (foundPlaceById < 0) {
+      throw new NotFoundError(
+        "Resource not found",
+        "The place you are looking for does not exist in our database"
+      );
+    }
+
+    response.status(201).json({
+      id: foundPlaceById.id,
+      userId: foundPlaceById.userId,
+      type: foundPlaceById.type,
+      location: foundPlaceById.location,
+      animaux: foundPlaceById.animaux,
+      personMax: foundPlaceById.personMax,
+      description: foundPlaceById.description,
+      picture: foundPlaceById.picture,
+    });
+  },
+  getPlaceByUser: async (request, response) => {
+    const userByName = await models.User.findOne({
+      attributes: ["firstName", "id"],
+      where: {
+        firstName: request.params.userName,
+      },
+    });
+
+    const foundPlaceByUser = await models.Place.findAll({
+      attributes: [
+        "id",
+        "type",
+        "userId",
+        "location",
+        "animaux",
+        "personMax",
+        "description",
+        "picture",
+      ],
+      where: {
+        userId: userByName.id,
+      },
+    });
+
+    response.status(201).json(foundPlaceByUser);
   },
 };
