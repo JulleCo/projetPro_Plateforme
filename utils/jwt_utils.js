@@ -15,23 +15,23 @@ module.exports = {
     );
   },
 
-  parseAuthorization: async (authorization) => {
+  parseAuthorization: (authorization) => {
     return authorization != null ? authorization.replace("Bearer ", "") : null;
   },
 
-  getUserId: async (authorization, response) => {
+  getUserId: (authorization, response) => {
     let userId = -1;
     const token = module.exports.parseAuthorization(authorization);
-
     if (token) {
-      const jwtToken = await jwt.verify(token, JWT_SIGN_SECRET);
-      if (!jwtToken) {
-        throw new UnauthorizedError(
-          "Unauthorized access",
-          "Problem accessing the jwtToken "
-        );
-      }
-      userId = jwtToken.userId;
+      jwt.verify(token, JWT_SIGN_SECRET, (error, decoded) => {
+        if (error) {
+          throw new UnauthorizedError(
+            "Unauthorized access",
+            "Problem accessing the jwtToken "
+          );
+        }
+        userId = decoded.userId;
+      });
     } else {
       throw new UnauthorizedError(
         "Unauthorized access",

@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const NotFoudError = require("../Middleware/NotFound_Handler");
-const userController = require("../controllers/userController");
+const { userController, placeController } = require("../controllers");
 
 router.get("/", (req, res) => {
   res.json({
@@ -9,8 +8,11 @@ router.get("/", (req, res) => {
   });
 });
 
-// Route USER
+// Routes USER
 router.post("/signup", userController.signup);
 router.post("/signin", userController.signin);
+
+// Routes PLACE
+router.post("/place", placeController.addPlace);
 
 module.exports = router;
