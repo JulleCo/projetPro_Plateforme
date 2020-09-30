@@ -14,10 +14,10 @@ router.post("/signin", userController.signin);
 
 // Routes PLACE
 router.post("/addPlace", placeController.addPlace);
-router.get("/places", placeController.getPlaces);
+router.delete("/places/placeid=:id", placeController.deletePlace);
 
+router.get("/places", placeController.getPlaces);
 router.get("/places/placeid=:id", placeController.getPlaceById);
 router.get("/places/username=:userName", placeController.getPlaceByUser);
-
 
 module.exports = router;

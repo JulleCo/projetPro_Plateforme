@@ -54,6 +54,18 @@ module.exports = {
       picture: newPlace.picture,
     });
   },
+  deletePlace: async (request, response) => {
+    const placeId = request.params.id
+    const deletePlace = await models.Place.destroy({
+      where: { id: placeId},
+    });
+    if (deletePlace) {
+      response.status(201).json({"succes": "place post delete"})
+    }
+    else{
+      throw new NotFoundError("Resource not found", "The requested resource does not (or no longer) exist")
+    }
+  },
   getPlaces: async (request, response) => {
     const placesFound = await models.Place.findAll({
       attributes: [
