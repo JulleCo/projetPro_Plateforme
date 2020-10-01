@@ -8,6 +8,7 @@ const {
   ConflictError,
   UnauthorizedError,
 } = require("../utils/errors");
+const { request } = require("express");
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
@@ -119,5 +120,26 @@ module.exports = {
         email: isMatch.email,
       },
     });
+  },
+
+  getUserById: async (request, response) => {
+    const userFound = await models.User.findOne({
+      where: {
+        id: request.params.id,
+      },
+    });
+    response.status(201).json(userFound);
+  },
+
+  deleteUser: async (request, response) => {
+    const deleteUser = await models.User.destroy({
+      where: { id: request.params.id },
+    });
+    if (deleteUser) {
+      response.status(201).json({ "succes": "User account delete" });
+    } 
+    else {
+      throw new NotFoundError("Resource not found","The requested resource does not (or no longer) exist");
+    }
   },
 };
