@@ -173,7 +173,7 @@ module.exports = {
       picture: foundPlaceById.picture,
     });
   },
-  getPlaceByUser: async (request, response) => {
+  getPlacesByUser: async (request, response) => {
     const userById = await models.User.findOne({
       attributes: ["id"],
       where: {

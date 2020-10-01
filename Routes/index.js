@@ -20,6 +20,6 @@ router.patch("/places/placeid=:id", authenticate_handler, placeController.editPl
 
 router.get("/places", authenticate_handler, placeController.getPlaces);
 router.get("/places/placeid=:id", authenticate_handler, placeController.getPlaceById);
-router.get("/places/userid=:userId", authenticate_handler, placeController.getPlaceByUser);
+router.get("/places/userid=:userId", authenticate_handler, placeController.getPlacesByUser);
 
 module.exports = router;
