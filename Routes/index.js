@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const authenticate_handler = require ("../middlewares/authentication_handler")
 const { userController, placeController } = require("../controllers");
 
 router.get("/", (req, res) => {
@@ -13,11 +14,12 @@ router.post("/signup", userController.signup);
 router.post("/signin", userController.signin);
 
 // Routes PLACE
-router.post("/addPlace", placeController.addPlace);
-router.delete("/places/placeid=:id", placeController.deletePlace);
+router.post("/place", authenticate_handler, placeController.addPlace);
+router.delete("/places/placeid=:id", authenticate_handler, placeController.deletePlace);
+router.patch("/places/placeid=:id", authenticate_handler, placeController.editPlace);
 
-router.get("/places", placeController.getPlaces);
-router.get("/places/placeid=:id", placeController.getPlaceById);
-router.get("/places/username=:userName", placeController.getPlaceByUser);
+router.get("/places", authenticate_handler, placeController.getPlaces);
+router.get("/places/placeid=:id", authenticate_handler, placeController.getPlaceById);
+router.get("/places/userid=:userId", authenticate_handler, placeController.getPlaceByUser);
 
 module.exports = router;
