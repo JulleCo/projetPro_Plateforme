@@ -3,14 +3,10 @@ const jwtUtils = require("../utils/jwt_utils");
 const bcrypt = require("bcrypt");
 require("express-async-errors");
 
-const coucou = require("../models/user");
-
 const {
   BadRequestError,
   ConflictError,
   UnauthorizedError,
-  NotFoundError,
-  ServerError,
 } = require("../utils/errors");
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -60,28 +56,27 @@ module.exports = {
         email: user.email,
       },
     });
-    if (!userFound) {
-      bcrypt.hash(user.password, 5, async (error, bcryptedPassword) => {
-        const newUser = await models.User.create({
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          password: bcryptedPassword,
-          admin: false,
-        });
-
-        response.status(201).json({
-          firstName: newUser.firstName,
-          lastName: newUser.lastName,
-          email: newUser.email,
-        });
-      });
-    } else {
+    if (userFound) {
       throw new ConflictError(
         "Conflict Error",
         "An account already exist with that email"
       );
     }
+
+    const bcryptedPassword = await bcrypt.hash(user.password, 5);
+    const newUser = await models.User.create({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: bcryptedPassword,
+      admin: false,
+    });
+
+    response.status(201).json({
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      email: newUser.email,
+    });
   },
 
   signin: async (request, response) => {
@@ -102,30 +97,27 @@ module.exports = {
       },
     });
 
-    if (isMatch) {
-      bcrypt.compare(user.password, isMatch.password, (error, resBcrypt) => {
-        if (resBcrypt) {
-          return response.status(200).json({
-            token: jwtUtils.generateTokenForUser(isMatch),
-            user: {
-              role: isMatch.role,
-              firstName: isMatch.firstName,
-              lastName: isMatch.lastName,
-              email: isMatch.email,
-            },
-          });
-        } else {
-          throw new UnauthorizedError(
-            "Unauthorized access",
-            "Your password is incorrect"
-          );
-        }
-      });
-    } else {
-      throw new NotFoundError(
-        "Resource not found",
+    if (!isMatch) {
+      throw new UnauthorizedError(
+        "Unauthorized access",
         "This account does not exist"
       );
     }
+    const resBcrypt = await bcrypt.compare(user.password, isMatch.password);
+    if (!resBcrypt) {
+      throw new UnauthorizedError(
+        "Unauthorized access",
+        "Mismatched, your password is incorrect"
+      );
+    }
+
+    response.status(200).json({
+      token: jwtUtils.generateTokenForUser(isMatch),
+      user: {
+        firstName: isMatch.firstName,
+        lastName: isMatch.lastName,
+        email: isMatch.email,
+      },
+    });
   },
 };

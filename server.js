@@ -5,7 +5,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const router = require("./routes");
-const {errorHandler, notFoundHandler} = require("./middleware");
+const {errorHandler, notFoundHandler} = require("./middlewares");
 
 let server = express();
 
