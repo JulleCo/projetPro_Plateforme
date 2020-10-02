@@ -1,6 +1,19 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const UnauthorizedError = require("../utils/errors");
+
 const JWT_SIGN_SECRET = process.env.JWT_SECRET;
+
+const parseAuthorization = (authorization) => {
+  const token = authorization.replace("Bearer ", "");
+  if (token === null || token === "") {
+    throw new UnauthorizedError(
+      "Unauthorized access",
+      "No token found : please authenticate to to access this feature"
+    );
+  }
+  return token;
+};
 
 module.exports = {
   generateTokenForUser: function (userData) {
@@ -15,27 +28,16 @@ module.exports = {
     );
   },
 
-  parseAuthorization: (authorization) => {
-    return authorization != null ? authorization.replace("Bearer ", "") : null;
-  },
-
   getUserId: (authorization, response) => {
     let userId = -1;
-    const token = module.exports.parseAuthorization(authorization);
-    if (token) {
-      jwt.verify(token, JWT_SIGN_SECRET, (error, decoded) => {
-        if (error) {
-          throw new UnauthorizedError(
-            "Unauthorized access",
-            "Problem accessing the jwtToken "
-          );
-        }
-        userId = decoded.userId;
-      });
-    } else {
+    const token = parseAuthorization(authorization);
+    try {
+      const jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
+      userId = jwtToken.userId;
+    } catch (err) {
       throw new UnauthorizedError(
         "Unauthorized access",
-        "The token is invalid"
+        "Problem: invalid token "
       );
     }
     return userId;
