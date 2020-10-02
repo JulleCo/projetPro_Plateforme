@@ -12,6 +12,10 @@ router.get("/", (req, res) => {
 // Routes USER
 router.post("/signup", userController.signup);
 router.post("/signin", userController.signin);
+router.delete("/user/:id", authenticate_handler, userController.deleteUser);
+router.patch("/user/:id", authenticate_handler, userController.editUser);
+
+router.get("/user/:id",authenticate_handler, userController.getUserById);
 
 // Routes PLACE
 router.post("/place", authenticate_handler, placeController.addPlace);

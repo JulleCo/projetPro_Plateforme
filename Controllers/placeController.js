@@ -1,5 +1,4 @@
 const models = require("../models");
-const jwtUtils = require("../utils/jwt_utils");
 const {
   BadRequestError,
   ConflictError,
@@ -18,22 +17,11 @@ module.exports = {
       picture: request.body.picture,
     };
 
-    // const headerAuth = request.headers["authorization"];
-    // const userId = jwtUtils.getUserId(headerAuth, response);
-
-    // if (userId < 0) {
-    //   throw new UnauthorizedError(
-    //     "Unauthorized access",
-    //     "You are not allow to create an annonce since you are not authenticate"
-    //   );
-    // }
-
     for (const key in place) {
       if (place[key] == null) {
         throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
       }
     }
-
     const newPlace = await models.Place.create({
       type: place.type,
       userId: request.body.userId,
@@ -56,7 +44,6 @@ module.exports = {
   },
   editPlace: async (request, response) => {
     const getPlaceId = request.params.id;
-    console.log(getPlaceId);
     const initialStatePlace = await models.Place.findOne({
       attributes: [
         "id",
@@ -86,7 +73,6 @@ module.exports = {
       description: request.body.description,
       picture: request.body.picture,
     };
-    console.log(inputStatePlace);
     if (
       initialStatePlace.type === inputStatePlace.type &&
       initialStatePlace.location === inputStatePlace.location &&
@@ -104,7 +90,6 @@ module.exports = {
     const updatePlace = await models.Place.update(request.body, {
       where: { id: getPlaceId },
     });
-    console.log(updatePlace);
     const updatedStatePlace = await models.Place.findOne({
       where: { id: getPlaceId },
     });
@@ -116,10 +101,12 @@ module.exports = {
       where: { id: placeId },
     });
     if (deletePlace) {
-      response.status(201).json({ "succes": "place post delete" });
-    } 
-    else {
-      throw new NotFoundError("Resource not found","The requested resource does not (or no longer) exist");
+      response.status(201).json({ succes: "place post delete" });
+    } else {
+      throw new NotFoundError(
+        "Resource not found",
+        "The requested resource does not (or no longer) exist"
+      );
     }
   },
   getPlaces: async (request, response) => {

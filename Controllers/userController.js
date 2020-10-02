@@ -7,6 +7,7 @@ const {
   BadRequestError,
   ConflictError,
   UnauthorizedError,
+  NotFoundError,
 } = require("../utils/errors");
 
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -78,7 +79,6 @@ module.exports = {
       email: newUser.email,
     });
   },
-
   signin: async (request, response) => {
     const user = {
       email: request.body.email,
@@ -119,5 +119,68 @@ module.exports = {
         email: isMatch.email,
       },
     });
+  },
+  getUserById: async (request, response) => {
+    const userFound = await models.User.findOne({
+      where: {
+        id: request.params.id,
+      },
+    });
+    response.status(201).json(userFound);
+  },
+  deleteUser: async (request, response) => {
+    const deleteUser = await models.User.destroy({
+      where: { id: request.params.id },
+    });
+    if (deleteUser) {
+      response.status(201).json({ succes: "User account delete" });
+    } else {
+      throw new NotFoundError(
+        "Resource not found",
+        "The requested resource does not (or no longer) exist"
+      );
+    }
+  },
+  editUser: async (request, response) => {
+    const getUserId = request.params.id;
+    console.log(request.body.id);
+    const initialStateUser = await models.User.findOne({
+      where: { id: getUserId },
+    });
+
+    if (!initialStateUser) {
+      throw new NotFoundError(
+        "Resource not found",
+        "There is nothing to find at that url, the ID does not exist"
+      );
+    }
+
+    let inputStateUser = {
+      firstName: request.body.firstName,
+      lastName: request.body.lastName,
+      email: request.body.email,
+      password: request.body.password,
+      accessCode: request.body.accessCode,
+    };
+    if (
+      initialStateUser.firstName === inputStateUser.firstName &&
+      initialStateUser.lastName === inputStateUser.lastName &&
+      initialStateUser.email === inputStateUser.email &&
+      initialStateUser.password === inputStateUser.password &&
+      initialStateUser.accessCode === inputStateUser.accessCode
+    ) {
+      throw new BadRequestError(
+        "Bad Request",
+        "No need to update, you didn't modified anything"
+      );
+    }
+
+    const updateUser = await models.User.update(request.body, {
+      where: { id: getUserId },
+    });
+    const updatedStateUser = await models.User.findOne({
+      where: { id: getUserId },
+    });
+    return response.status(201).json({ updateUser, updatedStateUser });
   },
 };
