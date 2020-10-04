@@ -2,7 +2,7 @@ const { transporter, mailOptions } = require("../utils/nodemailer_utils");
 const { BadRequestError } = require("../utils/errors");
 
 module.exports = {
-  mailTest: async (request, response) => {
+  sendContactMail: async (request, response) => {
     const inputMail = {
       subject: request.body.subject,
       text: request.body.text,
@@ -14,18 +14,18 @@ module.exports = {
       }
     }
 
-    const sendTest = await transporter.sendMail({
+    const sendEmail = await transporter.sendMail({
       from: mailOptions.from,
       to: mailOptions.to,
       subject: inputMail.subject,
       text: inputMail.text,
     });
-    
-    if (!sendTest) {
+
+    if (!sendEmail) {
       response.status(500).json({ error: "problème de mail" });
       console.log("Problem occured, aarrh", error);
     }
-    response.status(201).json({ sendTest });
-    console.log("Email send with succès, yeah !");
+    response.status(201).json({ sendEmail });
+    console.log("Email send with succes, yeah !");
   },
 };
