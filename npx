@@ -1,8 +1,0 @@
-
-[4mSequelize CLI [Node: 12.16.1, CLI: 6.1.0, ORM: 6.3.5][24m
-
-Loaded configuration file "config/config.json".
-Using environment "development".
-== 20200920203915-create-user: migrating =======
-== 20200920203915-create-user: migrated (0.278s)
-

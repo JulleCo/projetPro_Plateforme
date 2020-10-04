@@ -4,14 +4,14 @@ const authenticate_handler = require ("../middlewares/authentication_handler")
 const { userController, placeController } = require("../controllers");
 const mailController = require("../controllers/mailController")
 
-
 router.get("/", (req, res) => {
   res.json({
     message: "Hello World",
   });
 });
 
-router.post("/mail", mailController.mailTest)
+// Routes CONTACT
+router.post("/contact", mailController.sendContactMail)
 
 // Routes USER
 router.post("/signup", userController.signup);
