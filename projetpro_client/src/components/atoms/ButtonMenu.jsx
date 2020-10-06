@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const ButtonMenu = ({
+export default function ButtonMenu ({
     name,
     buttonType = "carré" || "rectangleHoriz" || "rectangleVerti",
     onClick = () => {},
-  }) => {
+  }) {
 
 let btnForme = ""
 if (buttonType === "carré"){
@@ -20,7 +20,7 @@ if (buttonType === "rectangleVerti"){
 
     return (
         <div className="btn-menu"> 
-            <button className={`btn-menu${btnForme}`} onClick={onClick} type="button">
+            <button className={`btn-menu${btnForme} btn`} onClick={onClick} type="button">
                 {name}
             </button>
         </div>

@@ -1,8 +1,9 @@
 import React from "react";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import "./App.scss";
-import { ButtonMenu } from "./components/atoms/ButtonMenu";
+// import { ButtonMenu } from "./components/atoms/ButtonMenu";
 
-// import { HomePage } from "./components/pages/HomePage";
+import { HomePage } from "./components/pages/HomePage";
 // import { Settings } from "./components/pages/Settings";
 // import { AnnoncePlaceCardList } from "./components/pages/AnnoncePlaceCardList";
 // import { Inscription } from "./components/pages/Inscription";
@@ -10,16 +11,13 @@ import { ButtonMenu } from "./components/atoms/ButtonMenu";
 
 function App() {
   return (
-    // <Router>
+    <Router>
       <div className="App">
-        <ButtonMenu buttonType="carré" name="test"/>
-        
-        <ButtonMenu buttonType="rectangleHoriz" name="test"/>
-        <ButtonMenu buttonType="rectangleVerti" name="test"/>
+
 
         {/* <Header /> */}
         <div className="container">
-          {/* <Switch> */}
+          <Switch>
             {/* <Route exact path="/settings">
               <Settings />
             </Route>
@@ -31,14 +29,14 @@ function App() {
             </Route>
             <Route path="/inscription">
               <Inscription />
-            </Route>
+            </Route> */}
             <Route path="/">
               <HomePage />
-            </Route> */}
-          {/* </Switch> */}
+            </Route>
+          </Switch>
         </div>
       </div>
-    // </Router>
+    </Router>
   );
 }
 

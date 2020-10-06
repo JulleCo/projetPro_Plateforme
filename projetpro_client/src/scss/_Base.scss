@@ -1,7 +1,10 @@
 body {
-  background-color: $main-color;
+  // width: 100vw;
+  // height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  // padding: .0 3vw;
+  background-color: $main-color-dark;
+  color:$font-color-dark;
+
+  font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
