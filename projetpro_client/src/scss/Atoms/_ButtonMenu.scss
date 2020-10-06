@@ -1,0 +1,36 @@
+.btn-menu {
+  margin: 3rem;
+  &-carré {
+    height: 15vh;
+    width: 33vw;
+    background: #dee9ea;
+    box-shadow: inset 9px 9px 25px 14px #dce2e2d7, 7px 7px 20px 5px #c4c4c4,
+      -7px -7px 20px 5px #f6f6f6;
+    // position: absolute;
+    border-radius: 8px;
+    // z-index: 99;
+    border: none;
+  }
+  &-rectangleHoriz {
+    width: 306px;
+    height: 100px;
+    background: #dee9ea;
+    box-shadow: inset 9px 9px 25px 14px #dce2e2d7, 7px 7px 20px 5px #c4c4c4,
+      -7px -7px 20px 5px #f6f6f6;
+    // position: absolute;
+    border-radius: 8px;
+    // z-index: 99;
+    border: none;
+  }
+  &-rectangleVerti {
+    width: 138px;
+    height: 219px;
+    background: #dee9ea;
+    box-shadow: inset 9px 9px 25px 14px #dce2e2d7, 7px 7px 20px 5px #c4c4c4,
+      -7px -7px 20px 5px #f6f6f6;
+    // position: absolute;
+    border-radius: 8px;
+    // z-index: 99;
+    border: none;
+  }
+}
