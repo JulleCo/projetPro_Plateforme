@@ -8,19 +8,22 @@ export default function ButtonMenu ({
 
 let btnForme = ""
 if (buttonType === "carré"){
-    btnForme = "-carré"
+    btnForme = "carré"
 }
 if (buttonType === "rectangleHoriz"){
-    btnForme = "-rectangleHoriz"
+    btnForme = "rectangleHoriz"
 }
 if (buttonType === "rectangleVerti"){
-    btnForme = "-rectangleVerti"
+    btnForme = "rectangleVerti"
+}
+if (buttonType === "connexion"){
+    btnForme = "connexion"
 }
 
 
     return (
         <div className="btn-menu"> 
-            <button className={`btn-menu${btnForme} btn`} onClick={onClick} type="button">
+            <button className={`btn-menu-all ${btnForme}`} onClick={onClick} type="button">
                 {name}
             </button>
         </div>

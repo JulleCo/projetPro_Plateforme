@@ -1,0 +1,31 @@
+.annoncePlace {
+  padding: 0 10vw;
+  & a {
+    text-decoration: none;
+    color: $main-color-dark;
+    font-size: 0.9rem;
+    margin-left: -4vw;
+    letter-spacing: 0.2rem;
+    text-shadow: 2px 2px 1px #021d29, -1px -1px 1.5px #035070;
+  }
+  &-top {
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    display: flex;
+    &-image {
+      width: 60vw;
+      // height: 40%;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 7%;
+    }
+    &-info {
+      width: 40vw;
+    }
+  }
+  &-description {
+    font-size: 0.9rem;
+    margin-top: 3rem;
+    text-align: justify;
+  }
+}

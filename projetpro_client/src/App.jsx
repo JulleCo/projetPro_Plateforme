@@ -1,13 +1,14 @@
 import React from "react";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import "./App.scss";
-// import { ButtonMenu } from "./components/atoms/ButtonMenu";
 
+import { AnnoncePlaceCardList } from "./components/pages/AnnoncePlaceCardList";
 import { HomePage } from "./components/pages/HomePage";
 // import { Settings } from "./components/pages/Settings";
-// import { AnnoncePlaceCardList } from "./components/pages/AnnoncePlaceCardList";
 // import { Inscription } from "./components/pages/Inscription";
-// import { AnnoncePlace } from "./components/pages/AnnoncePlace";
+import { AnnoncePlace } from "./components/pages/AnnoncePlace";
+import Header from "./components/organisms/Header";
+import Footer from "./components/organisms/Footer";
 
 function App() {
   return (
@@ -15,19 +16,19 @@ function App() {
       <div className="App">
 
 
-        {/* <Header /> */}
+        <Header />
         <div className="container">
           <Switch>
             {/* <Route exact path="/settings">
               <Settings />
-            </Route>
-            <Route path="/hebergement/:id">
+            </Route>*/}
+            <Route path="/hebergements/:id">
               <AnnoncePlace />
             </Route>
             <Route path="/hebergements">
               <AnnoncePlaceCardList />
             </Route>
-            <Route path="/inscription">
+            {/* <Route path="/inscription">
               <Inscription />
             </Route> */}
             <Route path="/">
@@ -35,6 +36,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </div>
     </Router>
   );

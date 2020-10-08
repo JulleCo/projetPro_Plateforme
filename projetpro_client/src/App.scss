@@ -1,14 +1,17 @@
-@import "./scss/Config/Variables";
+@import "./Scss/Config/Variables";
 
-@import "./scss/Base";
+@import "./Scss/Base";
 
 // Atoms
-@import "./scss/Atoms/ButtonMenu";
+@import "./Scss/Atoms/ButtonMenu";
 
 // Organisms
+@import "./Scss//Molecules/PlaceCard";
+@import "./Scss/Organims/homeAuth";
 @import "./Scss/Organims/homePublic";
 @import "./Scss/Organims/header";
 @import "./Scss/Organims/footer";
 
 // Pages
-@import "./Scss/Pages"
+@import "./Scss/Pages";
+@import "./Scss/Pages/annoncePage"

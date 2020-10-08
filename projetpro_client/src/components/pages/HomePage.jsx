@@ -1,14 +1,20 @@
 import React from "react";
-import Footer from "../organisms/Footer";
-import Header from "../organisms/Header";
+import HomeAuth from "../organisms/HomeAuth"
 import { HomePublic } from "../organisms/HomePublic";
 
+
 export const HomePage = () => {
+  const HomeComponent = (props) => {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn){
+      return <HomeAuth />
+    }
+    return <HomePublic />
+  }
+  
   return (
     <div className="homePage">
-      <Header />
-      <HomePublic />
-      <Footer />
+      <HomeComponent/>
     </div>
   );
 };

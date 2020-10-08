@@ -26,8 +26,8 @@ router.post("/place", authenticate_handler, placeController.addPlace);
 router.delete("/places/placeid=:id", authenticate_handler, placeController.deletePlace);
 router.patch("/places/placeid=:id", authenticate_handler, placeController.editPlace);
 
-router.get("/places", authenticate_handler, placeController.getPlaces);
-router.get("/places/placeid=:id", authenticate_handler, placeController.getPlaceById);
-router.get("/places/userid=:userId", authenticate_handler, placeController.getPlacesByUser);
+router.get("/places", /* authenticate_handler, */ placeController.getPlaces);
+router.get("/places/placeid=:id", /* authenticate_handler, */ placeController.getPlaceById);
+router.get("/places/userid=:userId", /* authenticate_handler, */ placeController.getPlacesByUser);
 
 module.exports = router;

@@ -1,52 +1,39 @@
 .btn-menu {
   // margin: 2rem;
-  
-  &-carré {
+  &-all {
+    color: $font-color-dark;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: $main-color-dark;
+    box-shadow: 7px 6px 20px 5px $buttondarkshadow-dark,
+      -7px -7px 20px 5px $buttonlightshadow-dark;
+    border-radius: 8px;
+    border: none;
     cursor: pointer;
-    height: 15vh;
-    width: 33vw;
-    color: $font-color-dark;
-    font-size: 0.9rem;
-    font-weight: 600;
-    background: $main-color-dark;
-    box-shadow:  7px 6px 20px 5px $buttondarkshadow-dark,
-      -7px -7px 20px 5px $buttonlightshadow-dark;
-    border-radius: 8px;
-    border: none;
     &:hover {
-      opacity: 0.3;
-      box-shadow: -6px -6px 10px $buttonlightshadow-dark,
-        6px 6px 10px $buttondarkshadow-dark;
+      color: $font-color-hover-dark;
+      color-interpolation-filters: linearRGB;
     }
-    // &:active {
-    //   opacity: 1;
-    //   box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
-    //     inset 8px 8px 16px rgba(0, 0, 0, 0.1);
-    //   color: #79e3b6;
-    // }
+    &:active {
+      color: $font-color-dark;
+      box-shadow: inset -4px -4px 8px $buttonlightshadow-dark,
+        inset 8px 8px 16px $buttondarkshadow-dark;
+    }
   }
-  &-rectangleHoriz {
-    width: 70vw;
-    height: 15vh;
-    color: $font-color-dark;
-    font-size: 0.9rem;
-    font-weight: 600;
-    background: $main-color-dark;
-    box-shadow:7px 6px 20px 5px $buttondarkshadow-dark,
-      -7px -7px 20px 5px $buttonlightshadow-dark;
-    border-radius: 8px;
-    border: none;
-  }
-  &-rectangleVerti {
-    width: 33vw;
-    height: 33vh;
-    color: $font-color-dark;
-    font-size: 0.9rem;
-    font-weight: 600;
-    background: $main-color-dark;
-    box-shadow:  7px 6px 20px 5px $buttondarkshadow-dark,
-      -7px -7px 20px 5px $buttonlightshadow-dark;
-    border-radius: 8px;
-    border: none;
-  }
+}
+.carré {
+  height: 15vh;
+  width: 33vw;
+}
+.rectangleHoriz {
+  width: 70vw;
+  height: 15vh;
+}
+.rectangleVerti {
+  width: 33vw;
+  height: 33vh;
+}
+.connexion{
+  width: 81vw;
+  height: 10vh;
 }
