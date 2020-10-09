@@ -1,7 +1,16 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import ButtonMenu from "../atoms/ButtonMenu";
 
 export const HomePublic = () => {
+  let history = useHistory();
+
+  const redirectInscription = () => {
+    history.push("/inscription");
+  };
+  const redirectConnexion = () => {
+    history.push("/connexion");
+  };
 
   return (
     <div className="homePublic">
@@ -9,6 +18,7 @@ export const HomePublic = () => {
         className="homePublic-connexion"
         buttonType="connexion"
         name="Connexion"
+        onClick={redirectConnexion}
       />
       <div className="homePublic-presentation">
         <h3 className="homePublic-presentation-title">Présentation</h3>
@@ -24,7 +34,7 @@ export const HomePublic = () => {
       </div>
       <div className="homePublic-buttons">
         <ButtonMenu buttonType="carré" name="Contact" />
-        <ButtonMenu buttonType="carré" name="Inscription" />
+        <ButtonMenu buttonType="carré" name="Inscription" onClick={redirectInscription}/>
       </div>
     </div>
   );

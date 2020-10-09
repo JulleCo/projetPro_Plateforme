@@ -1,20 +1,21 @@
-import React from "react";
-import HomeAuth from "../organisms/HomeAuth"
+import React, { useContext } from "react";
+import { AuthContext } from "../../App";
+import HomeAuth from "../organisms/HomeAuth";
 import { HomePublic } from "../organisms/HomePublic";
-
 
 export const HomePage = () => {
   const HomeComponent = (props) => {
-    const isLoggedIn = props.isLoggedIn;
-    if(isLoggedIn){
-      return <HomeAuth />
+    const { state, dispatch } = useContext(AuthContext);
+
+    if (state.isAuthenticated) {
+      return <HomeAuth />;
     }
-    return <HomePublic />
-  }
-  
+    return <HomePublic />;
+  };
+
   return (
     <div className="homePage">
-      <HomeComponent/>
+      <HomeComponent />
     </div>
   );
 };

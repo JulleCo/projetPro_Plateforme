@@ -1,0 +1,23 @@
+.actionBtn{
+    margin-top: 2rem;
+    width:28vw;
+    height: 7vh;
+    color: $font-color-dark;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: $main-color-dark;
+    box-shadow: 7px 6px 20px 5px $buttondarkshadow-dark,
+      -7px -7px 20px 5px $buttonlightshadow-dark;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      color: $font-color-hover-dark;
+      color-interpolation-filters: linearRGB;
+    }
+    &:active {
+      color: $font-color-dark;
+      box-shadow: inset -4px -4px 8px $buttonlightshadow-dark,
+        inset 8px 8px 16px $buttondarkshadow-dark;
+    }
+}

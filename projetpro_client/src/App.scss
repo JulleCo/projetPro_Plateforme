@@ -4,6 +4,8 @@
 
 // Atoms
 @import "./Scss/Atoms/ButtonMenu";
+@import "./Scss/Atoms/ButtonAction";
+
 
 // Organisms
 @import "./Scss//Molecules/PlaceCard";
@@ -14,4 +16,5 @@
 
 // Pages
 @import "./Scss/Pages";
-@import "./Scss/Pages/annoncePage"
+@import "./Scss/Pages/annoncePage";
+@import "./Scss/Pages/inscription";
