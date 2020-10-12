@@ -1,9 +1,12 @@
 import Axios from "axios";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
+import { useHistory } from "react-router-dom";
 import { ButtonAction } from "../atoms/ButtonAction";
 
 export function Inscription() {
+  const history = useHistory();
+
   const [signup, setSignup] = useState({
     firstName: null,
     lastName: null,
@@ -31,6 +34,7 @@ console.log("azert")
           accessCode: "",
         });
         alert.show("Inscription validée!");
+        history.push("./connexion")
       })
       .catch((error) => {
         setErrorForm(error.response.data.description);

@@ -3,24 +3,34 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 export function AnnoncePlace() {
+  const token = localStorage.getItem("token");
   const [place, setPlace] = useState({});
   let { id } = useParams();
+  const [error, setError] = useState(" ");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await Axios.get(
-        `http://localhost:1234/places/placeid=${id}`
-      );
-      // console.log(result)
-
-      setPlace(result.data);
+    const axiosData = async () => {
+      try {
+        const result = await Axios({
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          url: `http://localhost:1234/places/placeid=${id}`,
+        });
+        setPlace(result.data);
+      } catch (error) {
+        setError(error.response.data.error);
+      }
     };
-    fetchData();
+    axiosData();
   }, [id]);
 
   return (
     <div className="annoncePlace">
       <Link to={"/hebergements"}>..BACK TO THE LIST</Link>
+      <div>{error}</div>
       <div className="annoncePlace-top">
         <img
           className="annoncePlace-top-image"

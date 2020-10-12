@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
@@ -50,7 +50,7 @@ function App() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log(result.data)
+        console.log("app.js : result.data =>>" , result.data)
         dispatch({
           type: "LOAD_USER",
           payload: result.data,

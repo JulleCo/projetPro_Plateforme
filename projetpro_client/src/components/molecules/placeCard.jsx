@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function PlaceCard({ place }) {
+  
   return (
     <div className="placeCard">
       <Link className="placeCard-link" to={`/hebergements/${place.id}`}>
