@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
@@ -17,12 +17,12 @@ import Footer from "./components/organisms/Footer";
 import reducer from "./Hooks/Reducer";
 
 export const AuthContext = React.createContext({
-  state: "",
+  state: null,
   dispatch: () => {},
 });
 
 const initialState = {
-  isAuthenticate: false,
+  isAuthenticated: false,
   user: null,
   token: null,
 };
@@ -45,12 +45,13 @@ function App() {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
       if (token) {
-        const result = await Axios("http://localhost:8080/api/user/me", {
+        const result = await Axios("http://localhost:1234/user/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        AuthContext.dispatch({
+        console.log(result.data)
+        dispatch({
           type: "LOAD_USER",
           payload: result.data,
         });

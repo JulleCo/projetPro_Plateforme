@@ -10,6 +10,7 @@ module.exports = async (request, response, next) => {
       "Wrong token : Please authenticate to to access this feature"
     );
   }
+  request.userId = userId
   request.body.userId = userId;
   next();
 };

@@ -1,9 +1,8 @@
 module.exports = {
   reducer: (state, action) => {
-    console.log("c'est quoi", action.type);
+    console.log("c'est quoi", action);
     switch (action.type) {
       case "SIGNIN":
-        console.log("login");
         localStorage.setItem("token", action.payload.data.token);
         localStorage.setItem("user", action.payload.data.user.id);
 
@@ -13,8 +12,7 @@ module.exports = {
           token: action.payload.data.token,
           user: action.payload.config.user,
         };
-
-      case "LOAD-USER":
+      case "LOAD_USER":
         return {
           ...state,
           isAuthenticated: true,

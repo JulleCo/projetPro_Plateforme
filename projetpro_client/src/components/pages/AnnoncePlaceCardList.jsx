@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import PlaceCard from "../molecules/placeCard";
+import { AuthContext } from "../../App";
 
 export function AnnoncePlaceCardList(props) {
   const [list, setList] = useState([]);
   const [userId, setUserId] = useState("");
   const [errorForm, setErrorForm] = useState(" ");
+
+  const { state } = useContext(AuthContext);
+  useEffect(() => {
+    return () => {};
+  }, [state]);
 
   useEffect(() => {
     const axiosData = async () => {

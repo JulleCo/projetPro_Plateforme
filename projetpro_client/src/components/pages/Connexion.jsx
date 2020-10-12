@@ -16,7 +16,6 @@ export function Connexion(props) {
     isSubmitting: false,
     errorMessage: null,
   });
-  console.log("qsdfgg");
 
   const [errorForm, setErrorForm] = useState(" ");
   const alert = useAlert();
@@ -30,6 +29,8 @@ export function Connexion(props) {
       e.preventDefault();
       setSignin({
         ...signin,
+        email: "",
+        password: "",
         isSubmitting: true,
       });
       alert.show("Bienvenue !");
