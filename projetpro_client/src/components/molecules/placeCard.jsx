@@ -1,19 +1,6 @@
 import React from "react";
 
-export default function PlaceCard({ place, type = "simple" || "settings" }) {
-  // let settingsBtn = <div className="settingsBtn"></div>
-  // if (type === "settings") {
-  //   return (
-  //     <div>
-  //       <button type="submit" className="modifBtn">
-  //         Modifier
-  //       </button>
-  //       <button type="submit" className="deleteBtn">
-  //         Supprimer
-  //       </button>
-  //     </div>
-  //   );
-  // } 
+export default function PlaceCard({ place }) {
 
   return (
     <div className="placeCard">
