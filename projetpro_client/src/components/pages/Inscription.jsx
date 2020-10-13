@@ -13,32 +13,41 @@ export function Inscription() {
     email: null,
     password: null,
     accessCode: null,
-    // errorForm: null,
+    isSubmitting: false,
+    errorMessage: null,
   });
-  const [errorForm, setErrorForm] = useState(" ");
+  // const [errorForm, setErrorForm] = useState(" ");
   const alert = useAlert();
 
   const handleChange = (event) => {
     setSignup({ ...signup, [event.target.name]: event.target.value });
   };
-console.log("azert")
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    Axios.post("http://localhost:1234/signup", signup)
-      .then((response) => {
-        setSignup({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          accessCode: "",
-        });
-        alert.show("Inscription validée!");
-        history.push("./connexion")
-      })
-      .catch((error) => {
-        setErrorForm(error.response.data.description);
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      setSignup({
+        ...signup,
+        isSubmitting: true,
       });
+      const result = await Axios({
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        url: "http://localhost:1234/signup",
+        data: JSON.stringify(signup),
+      });
+      if (result.status === 201) {
+        return (
+          alert.show("Inscription validée!"), 
+          history.push("./connexion")
+        );
+      }
+    } catch (error) {
+      setSignup({
+        ...signup,
+        isSubmitting: false,
+        errorMessage: error.response.data.description,
+      });
+    }
   };
 
   return (
@@ -56,7 +65,6 @@ console.log("azert")
           id="firstName"
           value={signup.firstName}
           onChange={handleChange}
-          //   required
         />
       </div>
       <div className="signupForm_lastName">
@@ -67,7 +75,6 @@ console.log("azert")
           id="lastName"
           value={signup.lastName}
           onChange={handleChange}
-          //   required
         />
       </div>
       <div className="signupForm_email">
@@ -78,7 +85,6 @@ console.log("azert")
           id="emailSignup"
           value={signup.email}
           onChange={handleChange}
-          //   required
         />
       </div>
       <div className="signupForm_password">
@@ -89,7 +95,6 @@ console.log("azert")
           id="passSignup"
           value={signup.password}
           onChange={handleChange}
-          //   required
         />
       </div>
       <div className="signupForm_accessCode">
@@ -100,12 +105,10 @@ console.log("azert")
           id="accessCode"
           value={signup.accessCode}
           onChange={handleChange}
-          //   required
         />
       </div>
-      <div>{errorForm}</div>
-      <ButtonAction className="signupForm_button" />
-
+      <div>{signup.errorMessage}</div>
+      <ButtonAction className="signupForm_button" name="Valider" />
     </form>
   );
 }

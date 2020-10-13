@@ -17,7 +17,6 @@ export function Connexion(props) {
     errorMessage: null,
   });
 
-  const [errorForm, setErrorForm] = useState(" ");
   const alert = useAlert();
 
   const handleChange = (event) => {
@@ -33,12 +32,18 @@ export function Connexion(props) {
         password: "",
         isSubmitting: true,
       });
-      alert.show("Bienvenue !");
 
-      const result = await Axios.post("http://localhost:1234/signin", signin);
+      const result = await Axios({
+        method: "post",
+        headers: {"Content-Type": "application/json"},
+        url: "http://localhost:1234/signin",
+        data: JSON.stringify(signin),
+      });
       if (result.status === 200) {
         return (
-          dispatch({ type: "SIGNIN", payload: result }), history.push("./")
+          dispatch({ type: "SIGNIN", payload: result }),
+          history.push("./"),
+          alert.show("Bienvenue !")
         );
       }
     } catch (error) {
@@ -77,8 +82,8 @@ export function Connexion(props) {
           onChange={handleChange}
         />
       </div>
-      <div>{errorForm}</div>
-      <ButtonAction className="signinForm_button" />
+      <div>{signin.errorMessage}</div>
+      <ButtonAction className="signinForm_button" name="Valider"/>
     </form>
   );
 }

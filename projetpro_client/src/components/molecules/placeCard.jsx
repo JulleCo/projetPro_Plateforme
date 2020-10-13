@@ -1,11 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-export default function PlaceCard({ place }) {
-  
+export default function PlaceCard({ place, type = "simple" || "settings" }) {
+  // let settingsBtn = <div className="settingsBtn"></div>
+  // if (type === "settings") {
+  //   return (
+  //     <div>
+  //       <button type="submit" className="modifBtn">
+  //         Modifier
+  //       </button>
+  //       <button type="submit" className="deleteBtn">
+  //         Supprimer
+  //       </button>
+  //     </div>
+  //   );
+  // } 
+
   return (
     <div className="placeCard">
-      <Link className="placeCard-link" to={`/hebergements/${place.id}`}>
         <div className="placeCard-link-image">
           <img
             className="placeCard-link-image-place"
@@ -25,7 +36,7 @@ export default function PlaceCard({ place }) {
             <br />• {place.location}
           </p>
         </div>
-      </Link>
+        
     </div>
   );
 }

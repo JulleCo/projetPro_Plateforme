@@ -8,7 +8,7 @@ import "./App.scss";
 
 import { AnnoncePlaceCardList } from "./components/pages/AnnoncePlaceCardList";
 import { HomePage } from "./components/pages/HomePage";
-// import { Settings } from "./components/pages/Settings";
+import { Settings } from "./components/pages/Settings";
 import { Inscription } from "./components/pages/Inscription";
 import { Connexion } from "./components/pages/Connexion";
 import { AnnoncePlace } from "./components/pages/AnnoncePlace";
@@ -36,8 +36,6 @@ const options = {
   transition: transitions.SCALE,
 };
 
-
-
 function App() {
   const [state, dispatch] = useReducer(reducer.reducer, initialState);
 
@@ -50,7 +48,6 @@ function App() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log("app.js : result.data =>>" , result.data)
         dispatch({
           type: "LOAD_USER",
           payload: result.data,
@@ -73,9 +70,9 @@ function App() {
             <Header />
             <div className="container">
               <Switch>
-                {/* <Route exact path="/settings">
-              <Settings />
-            </Route>*/}
+                <Route exact path="/settings">
+                  <Settings />
+                </Route>
                 <Route exact path="/hebergements/:id">
                   <AnnoncePlace />
                 </Route>

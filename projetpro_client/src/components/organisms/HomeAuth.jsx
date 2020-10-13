@@ -8,6 +8,9 @@ export default function HomeAuth(props) {
   const redirectHebergements = () => {
     history.push("/hebergements");
   };
+  const redirectSettings = () => {
+    history.push("/settings");
+  };
 
   return (
     <div className="homeAuth">
@@ -22,6 +25,7 @@ export default function HomeAuth(props) {
           className="homeAuth-profil"
           buttonType="carré"
           name="Profil"
+          onClick={redirectSettings}
         />
         <ButtonMenu
           className="homeAuth-annonces"

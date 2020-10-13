@@ -1,10 +1,10 @@
 import React from "react";
 
-export function ButtonAction(props) {
+export function ButtonAction({name=""}) {
   return (
     <>
       <button className="actionBtn" type="submit">
-        Envoyer
+        {name}
       </button>
     </>
   );

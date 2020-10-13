@@ -1,6 +1,5 @@
 module.exports = {
   reducer: (state, action) => {
-    console.log("Reducer.js : console.log de action =>>", action.payload);
     switch (action.type) {
       case "SIGNIN":
         localStorage.setItem("token", action.payload.data.token);

@@ -1,0 +1,10 @@
+.input {
+  color: $font-color-dark;
+  height: 5vh;
+  width: 60vw;
+  border-radius: 4px;
+  background-color: $main-color-dark;
+  box-shadow: inset 6px 6px 15px $buttondarkshadow-dark,
+    inset -6px -6px 15px $buttonlightshadow-dark;
+  border: none;
+}

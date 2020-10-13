@@ -1,12 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import PlaceCard from "../molecules/placeCard";
-// import { useHistory } from "react-router-dom";
-import { AuthContext } from "../../App";
+import { Link } from "react-router-dom";
 
 export function AnnoncePlaceCardList(props) {
-  // let history = useHistory();
-
   const [list, setList] = useState([]);
   const [error, setError] = useState(" ");
 
@@ -20,7 +17,7 @@ export function AnnoncePlaceCardList(props) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          url: `http://localhost:1234/places`,
+          url: "http://localhost:1234/places",
         });
         if (result.data) {
           setList(result.data);
@@ -30,7 +27,7 @@ export function AnnoncePlaceCardList(props) {
       }
     };
     axiosData();
-  }, []);
+  }, [token]);
 
   return (
     <div className="placeList">
@@ -38,7 +35,11 @@ export function AnnoncePlaceCardList(props) {
       <p>SearchBar</p>
       <div className="placeList-cards">
         {list.map((place) => {
-          return <PlaceCard place={place} key={place.id} />;
+          return (
+            <Link className="placeCard-link" to={`/hebergements/${place.id}`}>
+              <PlaceCard place={place} key={place.id} />
+            </Link>
+          );
         })}
       </div>
     </div>

@@ -25,7 +25,7 @@ export function AnnoncePlace() {
       }
     };
     axiosData();
-  }, [id]);
+  }, [id, token]);
 
   return (
     <div className="annoncePlace">
