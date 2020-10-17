@@ -6,6 +6,7 @@ export function InputField({
     id="",
     value="",
     onChange= () => {},
+    disabled= Boolean,
 }) {
     
 

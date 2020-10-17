@@ -7,8 +7,11 @@
 @import "./Scss/Atoms/ButtonAction";
 @import "./Scss/Atoms/InputField";
 
-// Organisms
+// Molecules
 @import "./Scss//Molecules/PlaceCard";
+@import "./Scss//Molecules/placeForm";
+
+// Organisms
 @import "./Scss/Organims/homeAuth";
 @import "./Scss/Organims/homePublic";
 @import "./Scss/Organims/header";
@@ -18,3 +21,5 @@
 @import "./Scss/Pages";
 @import "./Scss/Pages/annoncePage";
 @import "./Scss/Pages/inscription";
+@import "./Scss/Pages/placeList";
+@import "./Scss/Pages/homePage";

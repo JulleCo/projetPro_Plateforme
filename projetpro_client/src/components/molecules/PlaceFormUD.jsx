@@ -1,8 +1,8 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import { PlaceForm } from "./PlaceForm";
+import { PlaceFormPatch } from "./PlaceFormPatch";
 
-export function PlaceFormUD({name}) {
+export function PlaceFormUD() {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("user");
   const [list, setList] = useState([]);
@@ -35,8 +35,7 @@ export function PlaceFormUD({name}) {
       <div className="placeListByUser-cards">
         {list.map((dataPlace) => {
           return (
-            <PlaceForm 
-            name={name}
+            <PlaceFormPatch 
             dataPlace={dataPlace}
             key={dataPlace.id}/>
           );

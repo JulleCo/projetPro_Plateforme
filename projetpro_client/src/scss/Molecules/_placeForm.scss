@@ -1,0 +1,12 @@
+.placeForm{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6%;
+    padding: 5%;
+    color: $font-color-dark;
+
+    font-size: 0.8rem;
+    // border:solid pink;
+    border-radius: 8px;
+    box-shadow: inset 10px 10px 20px #012636, inset -10px -10px 20px #03425e;
+}

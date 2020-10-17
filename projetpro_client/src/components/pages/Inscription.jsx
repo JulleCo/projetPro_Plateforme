@@ -108,7 +108,7 @@ export function Inscription() {
         />
       </div>
       <div>{signup.errorMessage}</div>
-      <ButtonAction className="signupForm_button" name="Valider" />
+      <ButtonAction className="signupForm_button" type="submit" name="Valider" />
     </form>
   );
 }

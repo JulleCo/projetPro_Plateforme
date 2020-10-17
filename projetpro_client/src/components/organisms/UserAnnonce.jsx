@@ -5,8 +5,8 @@ import { PlaceFormUD } from "../molecules/PlaceFormUD";
 export function UserAnnonce(props) {
   return (
     <>
-      <PlaceFormUD name="Modifier" />
-      <PlaceFormCreate name="Valider" />
+      <PlaceFormCreate name="Valider"/>
+      <PlaceFormUD />
     </>
   );
 }

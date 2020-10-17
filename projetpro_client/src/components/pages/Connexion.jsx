@@ -83,7 +83,7 @@ export function Connexion(props) {
         />
       </div>
       <div>{signin.errorMessage}</div>
-      <ButtonAction className="signinForm_button" name="Valider"/>
+      <ButtonAction className="signinForm_button" type="submit" name="Valider"/>
     </form>
   );
 }

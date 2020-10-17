@@ -17,7 +17,7 @@ export function AnnoncePlace() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          url: `http://localhost:1234/places/placeid=${id}`,
+          url: `http://localhost:1234/places/placeid=${id}`, 
         });
         setPlace(result.data);
       } catch (error) {
