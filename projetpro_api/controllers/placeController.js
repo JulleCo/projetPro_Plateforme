@@ -18,7 +18,7 @@ module.exports = {
     };
 
     for (const key in place) {
-      if (place[key] == null) {
+      if (place[key] === null) {
         throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
       }
     }

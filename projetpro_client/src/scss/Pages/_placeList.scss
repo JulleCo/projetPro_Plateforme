@@ -1,0 +1,9 @@
+.placeList {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  &-cards {
+    // height: 60vh;
+    padding: 0 10vw;
+  }
+}

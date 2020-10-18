@@ -1,0 +1,35 @@
+.placeCard {
+  &-link {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3%;
+    padding: 5%;
+    border-radius: 8px;
+    box-shadow: inset 10px 10px 20px #012636, inset -10px -10px 20px #03425e;
+    text-decoration: none;
+    color: $font-color-dark;
+    font-size: 0.8rem;
+
+    &-image {
+      width: 60vw;
+      // height: 13vh;
+      margin: 5.5% 7% 4% 1%;
+      display: flex;
+      &-place {
+        width: 50%;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-right: 1rem;
+      }
+      &-details {
+        margin:0 0 2rem 0;
+
+      }
+    }
+    &-info {
+      width: 50vw;
+      text-align: justify;
+    }
+  }
+}

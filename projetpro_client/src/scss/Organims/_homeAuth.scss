@@ -1,0 +1,15 @@
+.homeAuth{
+    height: 60vh;
+    padding: 0 12vw;
+    
+    display: flex;
+    flex-flow: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    &-rightSide{
+        height: 33vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

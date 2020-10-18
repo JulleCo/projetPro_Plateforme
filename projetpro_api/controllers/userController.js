@@ -24,7 +24,7 @@ module.exports = {
     };
 
     for (const key in user) {
-      if (user[key] == null) {
+      if (user[key] === null) {
         throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
       }
     }
@@ -34,7 +34,7 @@ module.exports = {
     if (passwordRegex.test(user.password) == false) {
       throw new BadRequestError(
         "Bad Request",
-        "Should be 6 to 20 characters, and include at least a number, a uppercase and a lowercase"
+        "Password should be 6 to 20 characters, and include at least a number, a uppercase and a lowercase"
       );
     }
 
@@ -44,7 +44,7 @@ module.exports = {
         accessCode: user.accessCode,
       },
     });
-    if (!accessCodeFound) {
+    if (!accessCodeFound && accessCodeFound === null) {
       throw new UnauthorizedError(
         "Unauthorized access",
         "You cannot create an account since your accessCode is incorrect or expired"
@@ -86,7 +86,7 @@ module.exports = {
     };
 
     for (const key in user) {
-      if (user[key] == null) {
+      if (user[key] === null /* || user[key] === undefined */) {
         throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
       }
     }
@@ -114,6 +114,7 @@ module.exports = {
     response.status(200).json({
       token: jwtUtils.generateTokenForUser(isMatch),
       user: {
+        id: isMatch.id,
         firstName: isMatch.firstName,
         lastName: isMatch.lastName,
         email: isMatch.email,
