@@ -1,10 +1,13 @@
 const { transporter, mailOptions } = require("../utils/nodemailer_utils");
 const { BadRequestError } = require("../utils/errors");
 
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 module.exports = {
   sendContactMail: async (request, response) => {
     const inputMail = {
-      subject: request.body.subject,
+      email: request.body.email,
+      messageSubject: request.body.messageSubject,
       text: request.body.text,
     };
 
@@ -13,11 +16,15 @@ module.exports = {
         throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
       }
     }
+    if (emailRegex.test(inputMail.email) == false) {
+      throw new BadRequestError("Bad Request", "Invalid email");
+    }
 
     const sendEmail = await transporter.sendMail({
       from: mailOptions.from,
       to: mailOptions.to,
-      subject: inputMail.subject,
+      cc: inputMail.email,
+      subject: `PLATEFORME || new message from ${inputMail.email} >> SUBJECT : ${inputMail.messageSubject}`,
       text: inputMail.text,
     });
 

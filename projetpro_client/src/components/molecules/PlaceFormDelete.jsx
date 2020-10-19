@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useHistory } from "react-router-dom";
 import { ButtonAction } from "../atoms/ButtonAction";
-import PlaceCard from "../molecules/placeCard";
+// import PlaceCard from "../molecules/placeCard";
 import { PlaceForm } from "../templates/PlaceForm";
 
 export function PlaceFormDelete({ setIsOpen, dataPlace }) {
@@ -45,10 +45,9 @@ export function PlaceFormDelete({ setIsOpen, dataPlace }) {
         console.log("modif place delete ? =>> ", deletePlace);
 
         return (
-            // alert.show("Annonce supprimée !"),
-            <p>annonce supprimée</p>,
-            setIsOpen(false)
-            // history.push("./settings")
+            setIsOpen(false),
+            history.push("./settings"),
+            alert.show("Annonce supprimée !")
             );
       }
     } catch (error) {

@@ -72,6 +72,8 @@ export function PlaceFormPatch({ dataPlace }) {
         action="/places"
         onSubmit={handleSubmit}
       >
+        <img src={modifPlace.picture} alt="aperçu du lieu"></img>
+
         <PlaceForm props={modifPlace} onChange={handleChange} />
         <ButtonAction
           className="placeForm_buttonModif"

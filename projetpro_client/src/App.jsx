@@ -15,6 +15,7 @@ import { AnnoncePlace } from "./components/pages/AnnoncePlace";
 import Header from "./components/organisms/Header";
 import Footer from "./components/organisms/Footer";
 import reducer from "./Hooks/Reducer";
+import { Contact } from "./components/pages/Contact";
 
 export const AuthContext = React.createContext({
   state: null,
@@ -78,6 +79,9 @@ function App() {
                 </Route>
                 <Route exact path="/hebergements">
                   <AnnoncePlaceCardList />
+                </Route>
+                <Route exact path="/contact">
+                  <Contact />
                 </Route>
                 <Route exact path="/inscription">
                   <Inscription />

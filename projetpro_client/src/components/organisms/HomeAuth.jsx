@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import HyperModal from "react-hyper-modal";
+
 import ButtonMenu from "../atoms/ButtonMenu";
+import { Contact } from "../pages/Contact";
 
 export default function HomeAuth(props) {
   let history = useHistory();
@@ -10,6 +13,14 @@ export default function HomeAuth(props) {
   };
   const redirectSettings = () => {
     history.push("/settings");
+  };
+  // const redirectContact = () => {
+  //   history.push("/contact");
+  // };
+
+  const [isOpen, setIsOpen] = useState(false);
+  const openModal = () => {
+    setIsOpen(true);
   };
 
   return (
@@ -42,7 +53,17 @@ export default function HomeAuth(props) {
         className="homeAuth-contact"
         buttonType="carré"
         name="Contact"
+        onClick={openModal}
       />
+
+      <HyperModal
+        isOpen={isOpen}
+        requestClose={() => {
+          setIsOpen(false);
+        }}
+      >
+        <Contact />
+      </HyperModal>
     </div>
   );
 }
