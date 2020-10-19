@@ -7,7 +7,7 @@ export default function PlaceCard({ place }) {
         <div className="placeCard-link-image">
           <img
             className="placeCard-link-image-place"
-            src="https://kenleephotography.files.wordpress.com/2015/09/7169kenlee-2015_arizona-30sf32iso640-toweringsaguarosstartrails-66andahalfmintotal-133layerstotal-1000px.jpg"
+            src={place.picture}
             alt="aperçu du lieu"
           />
           <p className="placeCard-link-image-details">

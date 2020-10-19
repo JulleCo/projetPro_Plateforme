@@ -13,6 +13,7 @@ module.exports = {
     mailOptions: {
     from: "julle4co@gmail.com",
     to: "colineleroy@gmail.com",
+    cc : "",
     subject: "Sending blabla",
     text: "That works!",
     },

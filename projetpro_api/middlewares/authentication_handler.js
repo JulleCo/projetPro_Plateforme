@@ -11,7 +11,6 @@ module.exports = async (request, response, next) => {
     );
   }
   request.userId = userId
-  console.log(userId)
   request.body.userId = userId;
   next();
 };

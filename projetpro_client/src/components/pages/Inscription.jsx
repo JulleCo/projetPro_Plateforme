@@ -6,6 +6,7 @@ import { ButtonAction } from "../atoms/ButtonAction";
 
 export function Inscription() {
   const history = useHistory();
+  const alert = useAlert();
 
   const [signup, setSignup] = useState({
     firstName: null,
@@ -16,8 +17,6 @@ export function Inscription() {
     isSubmitting: false,
     errorMessage: null,
   });
-  // const [errorForm, setErrorForm] = useState(" ");
-  const alert = useAlert();
 
   const handleChange = (event) => {
     setSignup({ ...signup, [event.target.name]: event.target.value });
