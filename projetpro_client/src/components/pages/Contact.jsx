@@ -85,6 +85,7 @@ export function Contact(props) {
           className="mailSender_button"
           type="submit"
           name="Envoyer"
+          onClick={handleSubmit}
         />
       </form>
     </>

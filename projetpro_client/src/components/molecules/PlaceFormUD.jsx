@@ -23,7 +23,7 @@ export function PlaceFormUD() {
           setList(databaseState.data); 
         }
       } catch (error) {
-        setError(error.response.data.error);
+        setError(error.response.data.description);
       }
     };
     axiosData();

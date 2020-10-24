@@ -14,6 +14,7 @@ export function PlaceFormPatch({ dataPlace }) {
   const openModal = () => {
     setIsOpen(true);
   };
+  
 
   let [modifPlace, setModifPlace] = useState({
     type: dataPlace.type,
@@ -46,11 +47,8 @@ export function PlaceFormPatch({ dataPlace }) {
         url: `http://localhost:1234/places/placeid=${dataPlace.id}`,
         data: JSON.stringify(modifPlace),
       });
-      console.log("result fecth patch =>>", result);
 
       if (result.status === 200) {
-        console.log("modif place update ? =>> ", modifPlace);
-
         return alert.show("Annonce modifiée !");
       }
     } catch (error) {
@@ -63,7 +61,7 @@ export function PlaceFormPatch({ dataPlace }) {
   };
 
   return (
-    <div className="placeForm">
+    <div >
       <form
         // modifPlace={modifPlace}
         key={modifPlace.id}

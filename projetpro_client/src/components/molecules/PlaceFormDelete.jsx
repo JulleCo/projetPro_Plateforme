@@ -76,7 +76,7 @@ export function PlaceFormDelete({ setIsOpen, dataPlace }) {
         <PlaceForm props={deletePlace} />
 
         <ButtonAction
-          className="placeForm_buttonModif"
+          className="placeForm_buttonDelete"
           type="submit"
           name="Supprimer"
         />
