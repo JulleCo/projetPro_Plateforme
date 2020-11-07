@@ -7,8 +7,8 @@ import { ButtonAction } from "../atoms/ButtonAction";
 
 export function Connexion(props) {
   const { dispatch } = useContext(AuthContext);
-
   const history = useHistory();
+  const alert = useAlert();
 
   const [signin, setSignin] = useState({
     email: null,
@@ -16,8 +16,6 @@ export function Connexion(props) {
     isSubmitting: false,
     errorMessage: null,
   });
-
-  const alert = useAlert();
 
   const handleChange = (event) => {
     setSignin({ ...signin, [event.target.name]: event.target.value });

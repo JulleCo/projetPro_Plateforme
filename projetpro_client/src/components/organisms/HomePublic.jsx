@@ -11,6 +11,9 @@ export const HomePublic = () => {
   const redirectConnexion = () => {
     history.push("/connexion");
   };
+  const redirectContact = () => {
+    history.push("/contact");
+  };
 
   return (
     <div className="homePublic">
@@ -33,7 +36,7 @@ export const HomePublic = () => {
         </p>
       </div>
       <div className="homePublic-buttons">
-        <ButtonMenu buttonType="carré" name="Contact" />
+        <ButtonMenu buttonType="carré" name="Contact" onClick={redirectContact}/>
         <ButtonMenu buttonType="carré" name="Inscription" onClick={redirectInscription}/>
       </div>
     </div>

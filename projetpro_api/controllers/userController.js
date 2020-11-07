@@ -14,13 +14,13 @@ const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
 module.exports = {
-  signup: async (request, response) => {
+  signup: async (props) => {
     const user = {
-      firstName: request.body.firstName,
-      lastName: request.body.lastName,
-      email: request.body.email,
-      password: request.body.password,
-      accessCode: request.body.accessCode,
+      firstName: props.firstName,
+      lastName: props.lastName,
+      email: props.email,
+      password: props.password,
+      accessCode: props.accessCode,
     };
 
     for (const key in user) {
@@ -28,6 +28,9 @@ module.exports = {
         throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
       }
     }
+    
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
     if (emailRegex.test(user.email) == false) {
       throw new BadRequestError("Bad Request", "Invalid email");
     }
@@ -65,18 +68,12 @@ module.exports = {
     }
 
     const bcryptedPassword = await bcrypt.hash(user.password, 5);
-    const newUser = await models.User.create({
+    return models.User.create({
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       password: bcryptedPassword,
       admin: false,
-    });
-
-    response.status(201).json({
-      firstName: newUser.firstName,
-      lastName: newUser.lastName,
-      email: newUser.email,
     });
   },
   signin: async (request, response) => {
@@ -121,26 +118,24 @@ module.exports = {
       },
     });
   },
-  getUserById: async (request, response) => {
+  getUserById: async (props) => {
     const userFound = await models.User.findOne({
       where: {
-        id: request.params.id,
+        id: props,
       },
     });
-    response.status(201).json(userFound);
-  },
-  deleteUser: async (request, response) => {
-    const deleteUser = await models.User.destroy({
-      where: { id: request.params.id },
-    });
-    if (deleteUser) {
-      response.status(201).json({ succes: "User account delete" });
-    } else {
+    if (!userFound) {
       throw new NotFoundError(
         "Resource not found",
         "The requested resource does not (or no longer) exist"
       );
     }
+    return userFound;
+  },
+  deleteUser: async (props) => {
+    await models.User.destroy({
+      where: { id: props },
+    });
   },
   editUser: async (request, response) => {
     const getUserId = request.params.id;
@@ -167,8 +162,7 @@ module.exports = {
       initialStateUser.firstName === inputStateUser.firstName &&
       initialStateUser.lastName === inputStateUser.lastName &&
       initialStateUser.email === inputStateUser.email &&
-      initialStateUser.password === inputStateUser.password &&
-      initialStateUser.accessCode === inputStateUser.accessCode
+      initialStateUser.password === inputStateUser.password
     ) {
       throw new BadRequestError(
         "Bad Request",

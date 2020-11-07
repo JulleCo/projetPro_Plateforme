@@ -26,7 +26,6 @@ export function AnnoncePlace() {
     };
     axiosData();
   }, [id, token]);
-
   return (
     <div className="annoncePlace">
       <Link to={"/hebergements"}>..BACK TO THE LIST</Link>

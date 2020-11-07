@@ -14,7 +14,6 @@ export function PlaceFormPatch({ dataPlace }) {
   const openModal = () => {
     setIsOpen(true);
   };
-  
 
   let [modifPlace, setModifPlace] = useState({
     type: dataPlace.type,
@@ -61,35 +60,26 @@ export function PlaceFormPatch({ dataPlace }) {
   };
 
   return (
-    <div >
+    <div>
       <form
-        // modifPlace={modifPlace}
         key={modifPlace.id}
         className="placeForm"
         method="PATCH"
         action="/places"
         onSubmit={handleSubmit}
       >
-        <img src={modifPlace.picture} alt="aperçu du lieu"></img>
+        <img src={modifPlace.picture} alt="aperçu du lieu" className="placeForm_image"></img>
 
         <PlaceForm props={modifPlace} onChange={handleChange} />
-        <ButtonAction
-          className="placeForm_buttonModif"
-          type="submit"
-          name="Modifier"
-        />
-        <ButtonAction
-          className="placeForm_buttonDelete"
-          type="button"
-          name="Supprimer"
-          onClick={openModal}
-        />
+
+        <div className="placeForm_button">
+          <ButtonAction className="placeForm_button-Modif" type="submit" name="Modifier" />
+          <ButtonAction className="placeForm_button-Delete" type="button" name="Supprimer" onClick={openModal} />
+        </div>
 
         <HyperModal
           isOpen={isOpen}
-          requestClose={() => {
-            setIsOpen(false);
-          }}
+          requestClose={() => {setIsOpen(false) }}
         >
           <PlaceFormDelete setIsOpen={setIsOpen} dataPlace={dataPlace} />
         </HyperModal>
