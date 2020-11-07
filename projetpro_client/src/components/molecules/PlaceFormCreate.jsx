@@ -6,6 +6,7 @@ import { PlaceForm } from "../templates/PlaceForm";
 
 export function PlaceFormCreate({ name = "" }) {
   const token = localStorage.getItem("token");
+  const alert = useAlert();
 
   const [createPlace, setCreatePlace] = useState({
     type: null,
@@ -17,7 +18,6 @@ export function PlaceFormCreate({ name = "" }) {
     isSubmitting: false,
     errorMessage: null,
   });
-  const alert = useAlert();
 
   const handleChange = (event) => {
     setCreatePlace({ ...createPlace, [event.target.name]: event.target.value });
@@ -39,12 +39,19 @@ export function PlaceFormCreate({ name = "" }) {
         url: "http://localhost:1234/places",
         data: JSON.stringify(createPlace),
       });
-      console.log(result);
 
-      if (result.status === 200) {
-        console.log(createPlace);
-
-        return alert.show("Annonce publiée !");
+      if (result.status === 201) {
+        return (
+          setCreatePlace({
+            type: "",
+            location: "",
+            animaux: "",
+            personMax: "",
+            description: "",
+            picture: "",
+          }),
+          alert.show("Annonce publiée !")
+        );
       }
     } catch (error) {
       setCreatePlace({

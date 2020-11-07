@@ -121,6 +121,7 @@ module.exports = {
         "description",
         "picture",
       ],
+      order:[["id", "DESC"]],
     });
 
     response.status(200).json(placesFound);

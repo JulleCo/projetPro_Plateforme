@@ -27,34 +27,6 @@ module.exports = {
       }
     );
   },
-
-  // authenticate_handler: (req, res, next) => {
-  //   const authHeader = req.headers.authorization;
-  //   console.log(authHeader)
-
-  //   if (authHeader) {
-  //     const token = authHeader.split(' ')[1];
-      
-  //     jwt.verify(token, secret, (err, user) => {
-  //       if (err) {
-  //         throw new UnAuthorizedError(
-  //           'Accès refusé',
-  //           'Vous devez être connecté pour accéder à cette ressource',
-  //         );
-  //       }
-  //       console.log(user)
-  //       req.user = user;
-  //       console.log('req.user', req.user);
-  //       next();
-  //     });
-  //   } else {
-  //     throw new BadRequestError(
-  //       'Mauvaise requête',
-  //       "le token n'as pas été fournit",
-  //     );
-  //   }
-  // },
-
   getUserId: (authorization, response) => {
     let userId = -1;
     const token = parseAuthorization(authorization);

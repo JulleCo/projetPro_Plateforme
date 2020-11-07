@@ -6,20 +6,26 @@
 @import "./Scss/Atoms/ButtonMenu";
 @import "./Scss/Atoms/ButtonAction";
 @import "./Scss/Atoms/InputField";
+@import "./Scss/Atoms/toggle_btn";
+
 
 // Molecules
 @import "./Scss//Molecules/PlaceCard";
 @import "./Scss//Molecules/placeForm";
+@import "./Scss//Molecules/placeFormDelete";
+
 
 // Organisms
 @import "./Scss/Organims/homeAuth";
 @import "./Scss/Organims/homePublic";
 @import "./Scss/Organims/header";
 @import "./Scss/Organims/footer";
+@import "./Scss/Organims/navBar";
 
 // Pages
-@import "./Scss/Pages";
 @import "./Scss/Pages/annoncePage";
 @import "./Scss/Pages/inscription";
 @import "./Scss/Pages/placeList";
 @import "./Scss/Pages/homePage";
+@import "./Scss/Pages/settings";
+

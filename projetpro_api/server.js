@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 
-// require("./utils/nodemailer_utils");
-
 const router = require("./routes");
 const { errorHandler, notFoundHandler } = require("./middlewares");
 
