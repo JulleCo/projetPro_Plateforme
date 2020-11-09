@@ -1,0 +1,28 @@
+.annoncePlaceDelete {
+  width: auto;
+//   height: auto;
+  min-height: 100%;
+  background-color: $main-color-dark;
+  padding: 0 8%;
+  font-size: 0.8rem;
+
+  display: flex;
+  flex-direction: column;
+    justify-content: space-around;
+  & h3 {
+    // margin-top: 0.3rem;
+    // margin-bottom: 1rem;
+    width: 75%;
+  }
+  & div {
+      padding:0.6rem;
+      border:solid 0.2px $buttondarkshadow-dark;
+      border-radius: 5px;
+    & p {
+      margin: 0;
+    }
+  }
+  &_buttonDelete{
+      justify-content: center;
+  }
+}

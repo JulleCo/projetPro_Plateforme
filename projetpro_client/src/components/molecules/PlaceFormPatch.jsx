@@ -47,7 +47,7 @@ export function PlaceFormPatch({ dataPlace }) {
         data: JSON.stringify(modifPlace),
       });
 
-      if (result.status === 200) {
+      if (result.status === 201) {
         return alert.show("Annonce modifiée !");
       }
     } catch (error) {
@@ -68,22 +68,42 @@ export function PlaceFormPatch({ dataPlace }) {
         action="/places"
         onSubmit={handleSubmit}
       >
-        <img src={modifPlace.picture} alt="aperçu du lieu" className="placeForm_image"></img>
+        <img
+          src={modifPlace.picture}
+          alt="aperçu du lieu"
+          className="placeForm_image"
+        ></img>
 
         <PlaceForm props={modifPlace} onChange={handleChange} />
 
+        <div>{modifPlace.errorMessage}</div>
         <div className="placeForm_button">
-          <ButtonAction className="placeForm_button-Modif" type="submit" name="Modifier" />
-          <ButtonAction className="placeForm_button-Delete" type="button" name="Supprimer" onClick={openModal} />
+          <ButtonAction
+            className="placeForm_button-Modif"
+            type="submit"
+            name="Modifier"
+          />
+          <ButtonAction
+            className="placeForm_button-Delete"
+            type="button"
+            name="Supprimer"
+            onClick={openModal}
+          />
         </div>
-
-        <HyperModal
-          isOpen={isOpen}
-          requestClose={() => {setIsOpen(false) }}
-        >
-          <PlaceFormDelete setIsOpen={setIsOpen} dataPlace={dataPlace} />
-        </HyperModal>
       </form>
+      <HyperModal
+        isOpen={isOpen}
+        requestClose={() => {
+          setIsOpen(false);
+        }}
+      >
+        <PlaceFormDelete
+          closeModale={() => {
+            setIsOpen(false);
+          }}
+          dataPlace={dataPlace}
+        />
+      </HyperModal>
     </div>
   );
 }

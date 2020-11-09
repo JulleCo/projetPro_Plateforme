@@ -7,22 +7,16 @@ import { ButtonAction } from "../atoms/ButtonAction";
 // import PlaceCard from "../molecules/placeCard";
 import { PlaceForm } from "../templates/PlaceForm";
 
-export function PlaceFormDelete({ setIsOpen, dataPlace }) {
+export function PlaceFormDelete({ closeModale = () => {}, dataPlace }) {
   const token = localStorage.getItem("token");
   const alert = useAlert();
   const history = useHistory();
 
   const [deletePlace, setDeletePlace] = useState({
-    type: dataPlace.type,
-    location: dataPlace.location,
-    animaux: dataPlace.animaux,
-    personMax: dataPlace.personMax,
-    description: dataPlace.description,
-    picture: dataPlace.picture,
+    ...dataPlace,
     isSubmitting: false,
     errorMessage: null,
   });
-
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -39,16 +33,14 @@ export function PlaceFormDelete({ setIsOpen, dataPlace }) {
         url: `http://localhost:1234/places/placeid=${dataPlace.id}`,
         data: JSON.stringify(deletePlace),
       });
-      console.log("result fecth delete =>>", result);
-
-      if (result.status === 200) {
-        console.log("modif place delete ? =>> ", deletePlace);
+      if (result.status === 201) {
+        console.log("annonce delete ? =>> ", deletePlace);
 
         return (
-            setIsOpen(false),
-            history.push("./settings"),
-            alert.show("Annonce supprimée !")
-            );
+          closeModale(),
+          history.push("./settings/mes-annonces"),
+          alert.show("Annonce supprimée !")
+        );
       }
     } catch (error) {
       setDeletePlace({
@@ -58,29 +50,40 @@ export function PlaceFormDelete({ setIsOpen, dataPlace }) {
       });
     }
   };
+
   return (
     <>
-      <h3>Voulez-vous vraiment supprimer ?</h3>
-      <form
-        deletePlace={deletePlace}
-        key={deletePlace.id}
-        className="placeForm"
-        method="DELETE"
-        action="/places"
-        onSubmit={handleSubmit}
-      >
-        {/* <input>
-          <PlaceCard place={dataPlace} />
-        </input> */}
+      <div className="annoncePlaceDelete">
+        <h3>Voulez-vous vraiment supprimer ?</h3>
 
-        <PlaceForm props={deletePlace} />
+        <div>
+          <p>Type d'hébergment :</p>
+          <p>{deletePlace.type}</p>
+        </div>
+        <div>
+          <p>Localisation :</p>
+          <p>{deletePlace.location}</p>
+        </div>
+        <div>
+          <p>Mes animaux :</p>
+          <p>{deletePlace.animaux}</p>
+        </div>
+        <div>
+          <p>Nombre de personne maximum possible pour l'accueil:</p>
+          <p>{deletePlace.personMax}</p>
+        </div>
+        <div>
+          <p>Description libre, conditions, modalités...</p>
+          <p>{deletePlace.description}</p>
+        </div>
 
         <ButtonAction
-          className="placeForm_buttonDelete"
+          className="annoncePlaceDelete_buttonDelete"
           type="submit"
           name="Supprimer"
+          onClick={handleSubmit}
         />
-      </form>
+      </div>
     </>
   );
 }

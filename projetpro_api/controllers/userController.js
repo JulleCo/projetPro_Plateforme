@@ -139,7 +139,6 @@ module.exports = {
   },
   editUser: async (request, response) => {
     const getUserId = request.params.id;
-    console.log(request.body.id);
     const initialStateUser = await models.User.findOne({
       where: { id: getUserId },
     });
@@ -158,11 +157,16 @@ module.exports = {
       password: request.body.password,
       accessCode: request.body.accessCode,
     };
+    console.log("1",inputStateUser.password , initialStateUser.password)
+
+    const resBcrypt = await bcrypt.compare(inputStateUser.password, initialStateUser.password);
+    console.log(inputStateUser.password , initialStateUser.password, resBcrypt)
+
     if (
       initialStateUser.firstName === inputStateUser.firstName &&
       initialStateUser.lastName === inputStateUser.lastName &&
-      initialStateUser.email === inputStateUser.email &&
-      initialStateUser.password === inputStateUser.password
+      initialStateUser.email === inputStateUser.email  /* &&
+      resBcrypt === false */
     ) {
       throw new BadRequestError(
         "Bad Request",
@@ -170,12 +174,25 @@ module.exports = {
       );
     }
 
-    const updateUser = await models.User.update(request.body, {
+    
+    let bcryptedPassword = await bcrypt.hash(inputStateUser.password, 5)
+        console.log(bcryptedPassword)
+
+    let updateUser = await models.User.update(request.body, {
+      where: { id: getUserId },
+      firstName: inputStateUser.firstName,
+      lastName: inputStateUser.lastName,
+      email: inputStateUser.email,
+      password: bcryptedPassword,
+    });
+    console.log(updateUser)
+
+    let updatedStateUser = await models.User.findOne({
       where: { id: getUserId },
     });
-    const updatedStateUser = await models.User.findOne({
-      where: { id: getUserId },
-    });
-    return response.status(201).json({ updateUser, updatedStateUser });
+    console.log(updatedStateUser)
+
+    return response.status(201).json({ updateUser, updatedStateUser })
+    
   },
 };

@@ -4,7 +4,7 @@ import { useAlert } from "react-alert";
 import { useHistory } from "react-router-dom";
 import { ButtonAction } from "../atoms/ButtonAction";
 
-export function Contact(props) {
+export function Contact({ closeModale = () => {} }) {
   const history = useHistory();
   const alert = useAlert();
 
@@ -33,7 +33,17 @@ export function Contact(props) {
         data: JSON.stringify(mailSender),
       });
       if (result.status === 201) {
-        return alert.show("Message envoyé!"), history.push("./");
+        return (
+          closeModale(),
+          alert.show("Message envoyé!"),
+          setMailSender({
+            ...mailSender,
+            email: "",
+            messageSubject: "",
+            text: "",
+            errorMessage: null,
+          })
+        );
       }
     } catch (error) {
       setMailSender({
@@ -43,7 +53,7 @@ export function Contact(props) {
       });
     }
   };
-
+  
   return (
     <>
       <form

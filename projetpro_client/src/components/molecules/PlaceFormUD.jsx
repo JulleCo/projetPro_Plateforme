@@ -23,12 +23,13 @@ export function PlaceFormUD() {
           setList(databaseState.data); 
         }
       } catch (error) {
+        console.log("erreur placeFormeUD >>>>>",error.response)
         setError(error.response.data.description);
       }
     };
     axiosData();
   }, [id, token]);
-
+  
   return (
     <div className="placeListByUser">
       <div>{error}</div>
