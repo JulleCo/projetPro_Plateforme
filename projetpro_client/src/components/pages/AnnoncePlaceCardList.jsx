@@ -33,7 +33,7 @@ export function AnnoncePlaceCardList(props) {
   const [searchValue, setSearchValue] = useState("");
 
   const filteredList = useMemo(() => {
-    if (searchValue == "") {
+    if (searchValue === "") {
       return list;
     }
     return list.filter((place) => {

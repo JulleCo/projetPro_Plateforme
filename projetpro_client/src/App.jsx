@@ -16,8 +16,6 @@ import { Connexion } from "./components/pages/Connexion";
 import { AnnoncePlace } from "./components/pages/AnnoncePlace";
 import { Contact } from "./components/pages/Contact";
 import { NavBar } from "./components/organisms/NavBar";
-import { UserProfil } from "./components/organisms/UserProfil";
-import { UserAnnonce } from "./components/organisms/UserAnnonce";
 
 const options = {
   position: positions.TOP_CENTER,
@@ -62,7 +60,7 @@ function App() {
       }
     };
     axiosData();
-  }, []);
+  }, [token]);
 console.log("app state", state)
 console.log("authcontext", AuthContext.state)
   return (

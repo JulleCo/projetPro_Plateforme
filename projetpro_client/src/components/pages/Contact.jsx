@@ -1,11 +1,9 @@
 import Axios from "axios";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
-import { useHistory } from "react-router-dom";
 import { ButtonAction } from "../atoms/ButtonAction";
 
 export function Contact({ closeModale = () => {} }) {
-  const history = useHistory();
   const alert = useAlert();
 
   const [mailSender, setMailSender] = useState({
