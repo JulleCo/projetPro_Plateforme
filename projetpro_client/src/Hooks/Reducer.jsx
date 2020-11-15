@@ -9,7 +9,7 @@ module.exports = {
           ...state,
           isAuthenticated: true,
           token: action.payload.data.token,
-          user: action.payload.config.data.user,
+          user: action.payload.data.user,
         };
       case "LOAD_USER":
         return {

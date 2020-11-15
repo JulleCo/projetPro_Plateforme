@@ -5,6 +5,7 @@ import {HomePublic} from "../organisms/HomePublic";
 
 export const HomePage = () => {
   const { state } = useContext(AuthContext);
+  console.log(state)
   useEffect(() => {
     return () => {};
   }, [state]);

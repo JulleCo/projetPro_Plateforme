@@ -5,7 +5,6 @@ import { UserProfil } from "../organisms/UserProfil";
 
 export function Settings(props) {
   let [toggleBtn, setToggleBtn] = useState(true);
-
   return (
     <div className="settings">
       <div className="settings_toggle">

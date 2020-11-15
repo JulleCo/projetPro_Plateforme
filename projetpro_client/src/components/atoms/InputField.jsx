@@ -7,10 +7,11 @@ export function InputField({
     value="",
     onChange= () => {},
     disabled= Boolean,
+    placeholder="",
 }) {
     
 
     return (
-            <input className="input" type={type} name={name} id={id} value={value} onChange={onChange}/>
+            <input className="input" type={type} name={name} placeholder={placeholder} id={id} value={value} onChange={onChange}/>
     )
 }

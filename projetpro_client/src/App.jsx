@@ -64,6 +64,7 @@ function App() {
     axiosData();
   }, []);
 console.log("app state", state)
+console.log("authcontext", AuthContext.state)
   return (
     <AlertProvider template={AlertTemplate} {...options}>
       <AuthContext.Provider
