@@ -87,7 +87,7 @@ export function Inscription() {
         />
       </div>
       <div className="signupForm_password">
-        <p>Password with 6 characters minimum, 1 capitale, 1 chiffre:</p>
+        <p>Le mot de passe doit contenir au moins 6 chractères, 1 capitale, 1 chiffre:</p>
         <input
           type="password"
           name="password"

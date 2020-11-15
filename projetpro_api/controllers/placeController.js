@@ -87,11 +87,17 @@ module.exports = {
       );
     }
 
+    for (const key in inputStatePlace) {
+      if (inputStatePlace[key] === "") {
+        throw new BadRequestError("Bad Request", `Input ${key} must be filled`);
+      }
+    }
+
     const updatePlace = await models.Place.update(request.body, {
       where: { id: getPlaceId },
     });
     const updatedStatePlace = await models.Place.findOne({
-      where: { id: getPlaceId },
+      where: { id: updatePlace },
     });
     return response.status(201).json({ updatePlace, updatedStatePlace });
   },

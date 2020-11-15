@@ -2,7 +2,6 @@
 // import { PlaceFormCreate } from "../molecules/PlaceFormCreate";
 import { PlaceFormUD } from "../molecules/PlaceFormUD";
 
-
 import React, { useState } from "react";
 import Axios from "axios";
 import { useAlert } from "react-alert";
@@ -71,14 +70,19 @@ export function UserAnnonce() {
     <>
       {/* <PlaceFormCreate name="Valider" /> */}
       <form
-      className="placeForm"
-      method="POST"
-      action="/places"
-      onSubmit={handleSubmit}
-    >
-      <PlaceForm props={createPlace} onChange={handleChange} />
-      <ButtonAction className="placeForm_button" type="submit" name="Valider" />
-    </form>
+        className="placeForm"
+        method="POST"
+        action="/places"
+        onSubmit={handleSubmit}
+      >
+        <PlaceForm props={createPlace} onChange={handleChange} />
+        <div>{createPlace.errorMessage}</div>
+        <ButtonAction
+          className="placeForm_button"
+          type="submit"
+          name="Valider"
+        />
+      </form>
       <PlaceFormUD />
     </>
   );

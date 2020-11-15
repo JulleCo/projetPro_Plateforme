@@ -33,13 +33,13 @@ export default function HomeAuth(props) {
       />
       <div className="homeAuth-rightSide">
         <ButtonMenu
-          className="homeAuth-profil"
+          className="homeAuth-rightSide-profil"
           buttonType="carré"
           name="Settings"
           onClick={redirectSettings}
         />
         <ButtonMenu
-          className="homeAuth-annonces"
+          className="homeAuth-rightSide-annonces"
           buttonType="carré"
           name="Petites Annonces"
         />

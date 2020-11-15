@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useAlert } from "react-alert";
 import { useHistory } from "react-router-dom";
 import { ButtonAction } from "../atoms/ButtonAction";
-// import PlaceCard from "../molecules/placeCard";
-import { PlaceForm } from "../templates/PlaceForm";
 
 export function PlaceFormDelete({ closeModale = () => {}, dataPlace }) {
   const token = localStorage.getItem("token");

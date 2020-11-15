@@ -20,7 +20,6 @@ if (buttonType === "connexion"){
     btnForme = "connexion"
 }
 
-
     return (
         <div className="btn-menu"> 
             <button className={`btn-menu-all ${btnForme}`} onClick={onClick} type="button">
