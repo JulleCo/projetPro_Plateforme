@@ -62,7 +62,7 @@ export default function HomeAuth(props) {
           setIsOpen(false);
         }}
       >
-        <Contact />
+        <Contact closeModale={() => {setIsOpen(false);}}/>
       </HyperModal>
     </div>
   );

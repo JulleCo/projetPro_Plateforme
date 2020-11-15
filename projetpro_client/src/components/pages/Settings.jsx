@@ -1,65 +1,48 @@
 import React, { useState } from "react";
-import {
-  Router,
-  useRouteMatch,
-  Route,
-  Switch,
-  useHistory,
-  Link,
-} from "react-router-dom";
-
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { UserAnnonce } from "../organisms/UserAnnonce";
 import { UserProfil } from "../organisms/UserProfil";
 
 export function Settings(props) {
-  let histories = useHistory();
+  let [toggleBtn, setToggleBtn] = useState(true);
 
-  const redirectProfil = () => {
-    histories.push("/settings/info-profil");
-  };
-  const redirectMyPosts = () => {
-    histories.push("/settings/mes-annonces");
-  };
   return (
     <div className="settings">
-      <div className="toggle">
-      <ToggleButtonGroup exclusive aria-label="text alignment" className="toggle">
-        <ToggleButton
-          className="toggle-btn"
-          value="left"
-          aria-label="left aligned"
-          onClick={redirectProfil}
+      <div className="settings_toggle">
+        <ToggleButtonGroup
+          exclusive
+          aria-label="text alignment"
+          className="settings_toggle-grp"
         >
-          <p>Profil</p>
-        </ToggleButton>
-        <ToggleButton
-          className="toggle-btn"
-          value="center"
-          aria-label="centered"
-          onClick={redirectMyPosts}
-        >
-          <p>Mes annonces</p>
-        </ToggleButton>
-      </ToggleButtonGroup>
+          <ToggleButton
+            className="settings_toggle-grp-btn"
+            value="left"
+            aria-label="left aligned"
+            onClick={() => {
+              setToggleBtn(false);
+            }}
+          >
+            <p>Profil</p>
+          </ToggleButton>
+          <ToggleButton
+            className="settings_toggle-grp-btn"
+            value="center"
+            aria-label="centered"
+            onClick={() => {
+              setToggleBtn(true);
+            }}
+          >
+            <p>Mes annonces</p>
+          </ToggleButton>
+        </ToggleButtonGroup>
       </div>
-      <UserAnnonce />
-
-      {/* <Link to={redirectMyPosts}>Annonces</Link>
-      <Link to={redirectProfil}>Profil</Link> */}
-
-      {/* <Switch>
-        <Route path={`${match.path}/profil`}>
-          <p>hello</p>
-          <UserProfil />
-        </Route>
-        <Route path={`${match.path}/mes-annonces`}>
-          <UserAnnonce />
-        </Route>
-        <Route path={match.path}>
-          <h3>Please select a topic.</h3>
-        </Route>
-      </Switch> */}
+      <div className="settings_componentMobile">
+        {toggleBtn ? <UserAnnonce /> : <UserProfil />}
+      </div>
+      <div className="settings_componentDesktop">
+        <div className="settings_componentDesktop-profil"> <UserProfil /> </div>
+        <div className="settings_componentDesktop-annonce"> <UserAnnonce /> </div>
+      </div>
     </div>
   );
 }

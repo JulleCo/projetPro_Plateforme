@@ -1,7 +1,7 @@
 import React from "react";
 import { InputField } from "../atoms/InputField";
 
-export function PlaceForm({props, onChange, disabled}) {
+export function PlaceForm({ props, onChange, disabled }) {
   return (
     <>
       <div className="placeForm_type">
@@ -14,7 +14,6 @@ export function PlaceForm({props, onChange, disabled}) {
           id="type"
           value={props.type}
           onChange={onChange}
-
         />
       </div>
       <div className="placeForm_location">
@@ -67,7 +66,6 @@ export function PlaceForm({props, onChange, disabled}) {
           onChange={onChange}
         />
       </div>
-      <div>{props.errorMessage}</div>
     </>
   );
 }

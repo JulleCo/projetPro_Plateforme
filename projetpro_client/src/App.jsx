@@ -63,7 +63,7 @@ function App() {
     };
     axiosData();
   }, []);
-
+console.log("app state", state)
   return (
     <AlertProvider template={AlertTemplate} {...options}>
       <AuthContext.Provider
@@ -81,12 +81,6 @@ function App() {
               <Switch>
                 <Route exact path="/settings">
                   <Settings />                   
-                </Route>
-                <Route exact path="/settings/info-profil">
-                  <UserProfil />
-                </Route>
-                <Route exact path="/settings/mes-annonces">
-                   <UserAnnonce />
                 </Route>
                 <Route exact path="/hebergements/:id">
                   <AnnoncePlace />
