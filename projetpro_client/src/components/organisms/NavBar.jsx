@@ -22,6 +22,7 @@ export function NavBar(props) {
   useEffect(() => {
     return () => {};
   }, [state]);
+  
   let match = useRouteMatch("");
 
   if (match.isExact === true || state.isAuthenticated === false) {
@@ -47,7 +48,10 @@ export function NavBar(props) {
           onClick={redirectSettings}
         />
         
-        <ButtonLogout></ButtonLogout>
+        <ButtonLogout
+        formeLogout="logout"
+        name="&#9099;"
+        />
       </div>
     );
   }

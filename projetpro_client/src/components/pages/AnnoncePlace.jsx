@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 export function AnnoncePlace() {
+  let { id } = useParams();
   const token = localStorage.getItem("token");
   const [place, setPlace] = useState({});
-  let { id } = useParams();
   const [error, setError] = useState(" ");
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export function AnnoncePlace() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          url: `http://localhost:1234/places/placeid=${id}`, 
+          url: `http://localhost:1234/places/placeid=${id}`,
         });
         setPlace(result.data);
       } catch (error) {
@@ -26,6 +26,8 @@ export function AnnoncePlace() {
     };
     axiosData();
   }, [id, token]);
+
+  console.log(place.userEmail);
   return (
     <div className="annoncePlace">
       <Link to={"/hebergements"}>..BACK TO THE LIST</Link>
@@ -40,6 +42,7 @@ export function AnnoncePlace() {
           • Type de lieu: {place.type} <br />• {place.personMax} personne(s) max
           <br /> • Animaux: {place.animaux}
           <br />• {place.location}
+          <br/> {place.userFirstName} &thinsp; &thinsp; • &thinsp; &thinsp; {place.userEmail}
         </p>
       </div>
       <p className="annoncePlace-description" key={place.id}>

@@ -1,47 +1,60 @@
-.signupForm {
-  width: 70vw;
-  padding: 0 10vw /* 0 15vw */;
+.mailSender {
+  width: 80%;
+  padding: 8% 0 12% 18%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
+  //   align-items: center;
+  background-color: $main-color-dark;
   font-size: 0.8rem;
+
+  @include media(desktop) {
+    padding-top:0;
+    padding-left:25%;
+  }
   & div {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    // align-items: center;
   }
   & div p {
-    width: 60vw;
+    width: 80%;
     text-align: center;
     @include media(desktop) {
-      width: 45vw;
+      width: 60%;
     }
   }
   & div input {
     color: $font-color-dark;
     height: 5vh;
-    width: 60vw;
+    width: 80%;
     border-radius: 4px;
     background-color: $main-color-dark;
     box-shadow: inset 6px 6px 15px $buttondarkshadow-dark,
       inset -6px -6px 15px $buttonlightshadow-dark;
     border: none;
     @include media(desktop) {
-      width: 45vw;
+      width: 60%;
     }
   }
   &_content textarea {
     color: $font-color-dark;
     height: 15vh;
-    width: 60vw;
+    width: 80%;
     border-radius: 4px;
     background-color: $main-color-dark;
     box-shadow: inset 6px 6px 15px $buttondarkshadow-dark,
       inset -6px -6px 15px $buttonlightshadow-dark;
     border: none;
     @include media(desktop) {
-      width: 45vw;
+      width: 60%;
+    }
+  }
+  &_btn {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    @include media(desktop) {
+      width: 60%;
     }
   }
 }

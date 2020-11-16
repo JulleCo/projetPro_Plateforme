@@ -55,12 +55,12 @@ export function Connexion(props) {
 
   return (
     <form
-      className="signinForm"
+      className="signupForm"
       method="POST"
       action="/signin"
       onSubmit={handleSubmit}
     >
-      <div className="signinForm_email">
+      <div className="signupForm_email">
         <p>Email:</p>
         <input
           type="text"
@@ -70,7 +70,7 @@ export function Connexion(props) {
           onChange={handleChange}
         />
       </div>
-      <div className="signinForm_password">
+      <div className="signupForm_password">
         <p>Password with 6 characters minimum, 1 capitale, 1 chiffre:</p>
         <input
           type="password"

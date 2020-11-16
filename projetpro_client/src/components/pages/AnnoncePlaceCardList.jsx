@@ -31,7 +31,6 @@ export function AnnoncePlaceCardList(props) {
   }, [token]);
 
   const [searchValue, setSearchValue] = useState("");
-
   const filteredList = useMemo(() => {
     if (searchValue === "") {
       return list;
@@ -39,8 +38,7 @@ export function AnnoncePlaceCardList(props) {
     return list.filter((place) => {
       return (
         place.location.toLowerCase().includes(searchValue.toLowerCase()) ||
-        place.type.toLowerCase().includes(searchValue.toLowerCase()) ||
-        place.description.toLowerCase().includes(searchValue.toLowerCase())
+        place.type.toLowerCase().includes(searchValue.toLowerCase())
       );
     });
   }, [searchValue, list]);

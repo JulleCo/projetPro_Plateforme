@@ -11,16 +11,24 @@ export default function PlaceCard({ place }) {
             alt="aperçu du lieu"
           />
           <p className="placeCard-link-image-details">
-            • {place.personMax} personne(s) max
-            <br /> • Animaux: {place.animaux}
-            <br />• {place.location}
+            • Hérbegement proposé par: {place.User.firstName}
+            <br />
+            <br />• Type de lieu:
+            <br /> &thinsp; &thinsp; {place.type}
+            <br />
+            <br />• Localisation: {place.location}
+            <br />
+            <br />• {place.personMax} personne(s) max
           </p>
         </div>
 
         <div className="placeCard-link-infos">
           <p className="placeCard-link-infos-type" key={place.id}>
-            Type de lieu: {place.type} <br /> <br />
-            {place.description}
+            • Information description :<br />
+            &thinsp; &thinsp; &gt; {place.description}
+            <br/> <br/>
+
+            Pour plus d'informations cliquez sur l'annonce
           </p>
         </div>
       </div>

@@ -4,6 +4,7 @@ import HyperModal from "react-hyper-modal";
 
 import ButtonMenu from "../atoms/ButtonMenu";
 import { Contact } from "../pages/Contact";
+import { ButtonLogout } from "../atoms/ButtonLogout";
 
 export default function HomeAuth(props) {
   let history = useHistory();
@@ -39,22 +40,28 @@ export default function HomeAuth(props) {
           onClick={redirectSettings}
         />
         <ButtonMenu
-          className="homeAuth-rightSide-annonces"
-          buttonType="carré"
-          name="Petites Annonces"
-        />
-      </div>
-      <ButtonMenu
-        className="homeAuth-documents"
-        buttonType="carré"
-        name="Documents"
-      />
-      <ButtonMenu
         className="homeAuth-contact"
         buttonType="carré"
         name="Contact"
         onClick={openModal}
       />
+        {/* <ButtonMenu
+          className="homeAuth-rightSide-annonces"
+          buttonType="carré"
+          name="Petites Annonces"
+        /> */}
+      </div>
+
+      <ButtonLogout
+      formeLogout="homeAuth-documents carré"
+      name="Déconnexion"
+      />
+      <ButtonMenu
+        className="homeAuth-documents"
+        buttonType="carré"
+        name="Documents"
+      />
+      
 
       <HyperModal
         isOpen={isOpen}
