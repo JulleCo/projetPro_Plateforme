@@ -36,7 +36,7 @@ export default function HomeAuth(props) {
         <ButtonMenu
           className="homeAuth-rightSide-profil"
           buttonType="carré"
-          name="Settings"
+          name="Paramètres"
           onClick={redirectSettings}
         />
         <ButtonMenu

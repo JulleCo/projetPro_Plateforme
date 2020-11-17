@@ -44,7 +44,7 @@ export function NavBar(props) {
         {/* <ButtonNav className="navBar-annonces" name="Petites Annonces" /> */}
         <ButtonNav
           className="navBar-profil"
-          name="Settings"
+          name="Paramètres"
           onClick={redirectSettings}
         />
         
