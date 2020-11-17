@@ -22,6 +22,7 @@ export function NavBar(props) {
   useEffect(() => {
     return () => {};
   }, [state]);
+  
   let match = useRouteMatch("");
 
   if (match.isExact === true || state.isAuthenticated === false) {
@@ -43,11 +44,14 @@ export function NavBar(props) {
         {/* <ButtonNav className="navBar-annonces" name="Petites Annonces" /> */}
         <ButtonNav
           className="navBar-profil"
-          name="Settings"
+          name="Paramètres"
           onClick={redirectSettings}
         />
         
-        <ButtonLogout></ButtonLogout>
+        <ButtonLogout
+        formeLogout="logout"
+        name="&#9099;"
+        />
       </div>
     );
   }

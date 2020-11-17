@@ -127,7 +127,13 @@ module.exports = {
         "description",
         "picture",
       ],
-      order:[["id", "DESC"]],
+      order: [["id", "DESC"]],
+      include: [
+        {
+          model: models.User,
+          attributes: ["email", "firstName", "lastName"],
+        },
+      ],
     });
 
     response.status(200).json(placesFound);
@@ -147,8 +153,13 @@ module.exports = {
       where: {
         id: request.params.id,
       },
+      include: [
+        {
+          model: models.User,
+          attributes: ["email", "firstName", "lastName"],
+        },
+      ],
     });
-
     if (foundPlaceById == null) {
       throw new NotFoundError(
         "Resource not found",
@@ -165,6 +176,9 @@ module.exports = {
       personMax: foundPlaceById.personMax,
       description: foundPlaceById.description,
       picture: foundPlaceById.picture,
+      userEmail: foundPlaceById.User.email,
+      userFirstName: foundPlaceById.User.firstName,
+      userLastName: foundPlaceById.User.lastName,
     });
   },
   getPlacesByUser: async (request, response) => {
@@ -189,6 +203,12 @@ module.exports = {
       where: {
         userId: userById.id,
       },
+      include: [
+        {
+          model: models.User,
+          attributes: ["email", "firstName", "lastName"],
+        },
+      ],
     });
 
     response.status(201).json(foundPlaceByUser);

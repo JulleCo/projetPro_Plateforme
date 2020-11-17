@@ -77,13 +77,15 @@ export function UserAnnonce() {
       >
         <PlaceForm props={createPlace} onChange={handleChange} />
         <div>{createPlace.errorMessage}</div>
-        <ButtonAction
-          className="placeForm_button"
-          type="submit"
-          name="Valider"
-        />
+        <div className="placeFormUser_button">
+          <ButtonAction
+            // className="placeForm_button"
+            type="submit"
+            name="Valider"
+          />
+        </div>
       </form>
-      <PlaceFormUD />
+      <PlaceFormUD addItem={createPlace} />
     </>
   );
 }

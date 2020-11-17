@@ -2,13 +2,11 @@ import Axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useAlert } from "react-alert";
-import { useHistory } from "react-router-dom";
 import { ButtonAction } from "../atoms/ButtonAction";
 
 export function PlaceFormDelete({ closeModale = () => {}, dataPlace }) {
   const token = localStorage.getItem("token");
   const alert = useAlert();
-  const history = useHistory();
 
   const [deletePlace, setDeletePlace] = useState({
     ...dataPlace,
@@ -36,7 +34,6 @@ export function PlaceFormDelete({ closeModale = () => {}, dataPlace }) {
 
         return (
           closeModale(),
-          history.push("./settings/mes-annonces"),
           alert.show("Annonce supprimée !")
         );
       }

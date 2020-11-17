@@ -151,18 +151,19 @@ module.exports = {
       firstName: request.body.firstName,
       lastName: request.body.lastName,
       email: request.body.email,
-      password: request.body.password,
+      // password: request.body.password,
       accessCode: request.body.accessCode,
     };
-    console.log("1",inputStateUser.password , initialStateUser.password)
+    // console.log("1",inputStateUser.password , initialStateUser.password)
 
-    const resBcrypt = await bcrypt.compare(inputStateUser.password, initialStateUser.password);
-    console.log(inputStateUser.password , initialStateUser.password, resBcrypt)
+    // const resBcrypt = await bcrypt.compare(inputStateUser.password, initialStateUser.password);
+    // console.log(inputStateUser.password , initialStateUser.password, resBcrypt)
 
     if (
       initialStateUser.firstName === inputStateUser.firstName &&
       initialStateUser.lastName === inputStateUser.lastName &&
-      initialStateUser.email === inputStateUser.email  /* &&
+      initialStateUser.email === inputStateUser.email  &&
+      initialStateUser.accessCode === inputStateUser.accessCode/* &&
       resBcrypt === false */
     ) {
       throw new BadRequestError(
@@ -172,15 +173,16 @@ module.exports = {
     }
 
     
-    let bcryptedPassword = await bcrypt.hash(inputStateUser.password, 5)
-        console.log(bcryptedPassword)
+    // let bcryptedPassword = await bcrypt.hash(inputStateUser.password, 5)
+        // console.log(bcryptedPassword)
 
     let updateUser = await models.User.update(request.body, {
       where: { id: getUserId },
       firstName: inputStateUser.firstName,
       lastName: inputStateUser.lastName,
       email: inputStateUser.email,
-      password: bcryptedPassword,
+      // password: bcryptedPassword,
+      accessCode: inputStateUser.accessCode,
     });
     console.log(updateUser)
 

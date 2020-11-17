@@ -1,7 +1,9 @@
 import React, { useEffect, useReducer, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+
 import Axios from "axios";
 import reducer from "./Hooks/Reducer";
 import "./App.scss";
@@ -20,7 +22,7 @@ import { NavBar } from "./components/organisms/NavBar";
 const options = {
   position: positions.TOP_CENTER,
   timeout: 5000,
-  offset: "30px",
+  offset: "80px",
   transition: transitions.SCALE,
 };
 
@@ -61,8 +63,8 @@ function App() {
     };
     axiosData();
   }, [token]);
-console.log("app state", state)
-console.log("authcontext", AuthContext.state)
+// console.log("app state", state)
+// console.log("authcontext", AuthContext.state)
   return (
     <AlertProvider template={AlertTemplate} {...options}>
       <AuthContext.Provider

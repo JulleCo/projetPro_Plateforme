@@ -13,7 +13,7 @@ export function UserProfil(props) {
     email: "",
     firstName: "",
     lastName: "",
-    password: "",
+    accessCode: "",
     isSubmitting: false,
     errorMessage: null,
   });
@@ -35,8 +35,9 @@ export function UserProfil(props) {
             ...infoUser,
             firstName: result.data.userFound.firstName,
             lastName: result.data.userFound.lastName,
-            password: result.data.userFound.password,
             email: result.data.userFound.email,
+            admin: result.data.userFound.admin,
+            accessCode: result.data.userFound.accessCode,
           });
         }
       } catch (error) {
@@ -100,14 +101,15 @@ export function UserProfil(props) {
   }
   return (
     <>
-      <h2>{infoUser.firstName} : tes infos perso</h2>
-
       <form
-        className="userForm"
+        className="profilForm"
         method="PATCH"
         action="/user"
         onSubmit={handleSubmit}
       >
+        <h2>Tes infos perso {infoUser.firstName}</h2>
+
+        <p>Prénom :</p>
         <InputField
           type="text"
           name="firstName"
@@ -116,6 +118,7 @@ export function UserProfil(props) {
           onChange={handleChange}
         ></InputField>
 
+        <p>Nom :</p>
         <InputField
           type="text"
           name="lastName"
@@ -124,6 +127,7 @@ export function UserProfil(props) {
           onChange={handleChange}
         ></InputField>
 
+        <p>Email :</p>
         <InputField
           type="email"
           name="email"
@@ -132,19 +136,29 @@ export function UserProfil(props) {
           onChange={handleChange}
         />
 
-        {/* <InputField
-          type="text"
-          name="password"
-          id="password"
-          value={infoUser.password}
-          onChange={handleChange}
-        /> */}
+        {infoUser.admin ? (
+          <div className="profilForm_accessCode">
+            <p>
+              accessCode à actualiser après chaque ajout de nouvel
+              utilisateur-ice:
+            </p>
+            <InputField
+              type="text"
+              name="accessCode"
+              id="accessCode"
+              value={infoUser.accessCode}
+              onChange={handleChange}
+            />
+          </div>
+        ) : (
+          <div></div>
+        )}
 
         <p>{infoUser.errorMessage}</p>
         <ButtonAction
           className="userForm_button-Modif"
           type="submit"
-          name="Sauvegarder les modifications"
+          name="Sauvegarder"
         />
       </form>
     </>

@@ -2,7 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { PlaceFormPatch } from "./PlaceFormPatch";
 
-export function PlaceFormUD() {
+export function PlaceFormUD({ addItem }) {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("user");
   const [list, setList] = useState([]);
@@ -11,6 +11,7 @@ export function PlaceFormUD() {
   useEffect(() => {
     const axiosData = async () => {
       try {
+        list.filter((item) => item.id !== addItem.id)
         const databaseState = await Axios({
           method: "get",
           headers: {
@@ -23,7 +24,6 @@ export function PlaceFormUD() {
           setList(databaseState.data); 
         }
       } catch (error) {
-        console.log("erreur placeFormeUD >>>>>",error.response)
         setError(error.response.data.description);
       }
     };

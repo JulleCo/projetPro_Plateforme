@@ -15,6 +15,7 @@ module.exports = {
         return {
           ...state,
           isAuthenticated: true,
+          token: action.payload.token,
           user: action.payload,
         };
 

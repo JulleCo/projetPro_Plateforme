@@ -51,7 +51,7 @@ export function Contact({ closeModale = () => {} }) {
       });
     }
   };
-  
+
   return (
     <>
       <form
@@ -80,7 +80,7 @@ export function Contact({ closeModale = () => {} }) {
         </div>
         <div className="mailSender_content">
           <p>Message:</p>
-          <input
+          <textarea
             type="text"
             name="text"
             id="text"
@@ -89,12 +89,14 @@ export function Contact({ closeModale = () => {} }) {
           />
         </div>
         <div>{mailSender.errorMessage}</div>
-        <ButtonAction
-          className="mailSender_button"
-          type="submit"
-          name="Envoyer"
-          onClick={handleSubmit}
-        />
+        <div className="mailSender_btn">
+          <ButtonAction
+            // className="mailSender_button"
+            type="submit"
+            name="Envoyer"
+            onClick={handleSubmit}
+          />
+        </div>
       </form>
     </>
   );
