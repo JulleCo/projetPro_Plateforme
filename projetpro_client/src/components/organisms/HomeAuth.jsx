@@ -56,12 +56,13 @@ export default function HomeAuth(props) {
       formeLogout="homeAuth-documents carré"
       name="Déconnexion"
       />
+      <a target="_blank" href="https://drive.google.com/drive/folders/1ZB6A88y57DCc8-PeFQ7_d_QBARhIKMFu?usp=sharing">
       <ButtonMenu
         className="homeAuth-documents"
         buttonType="carré"
         name="Documents"
       />
-      
+      </a>
 
       <HyperModal
         isOpen={isOpen}

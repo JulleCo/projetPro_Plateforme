@@ -42,7 +42,11 @@ export function AnnoncePlace() {
           • Type de lieu: {place.type} <br />• {place.personMax} personne(s) max
           <br /> • Animaux: {place.animaux}
           <br />• {place.location}
-          <br/> {place.userFirstName} &thinsp; &thinsp; • &thinsp; &thinsp; {place.userEmail}
+          <br/>
+          <br/>
+          <br/> C'est {place.userFirstName} qui propose son hébergement {/* &thinsp; &thinsp; */} <br/>
+          <br/>
+          Voici son email de contact :  {/* &thinsp; &thinsp; */} {place.userEmail}
         </p>
       </div>
       <p className="annoncePlace-description" key={place.id}>
