@@ -1,11 +1,3 @@
-
-// const loginReq=(username, password, setError) => {
-//   cy.get("username").type(username);
-
-//   cy.get("password").type(password);
-//   cy.get("button").click();
-// };
-
 context("[Test case] Authentication component where user does not exist", () => {
 
   it('should show Connexion page', () => {
