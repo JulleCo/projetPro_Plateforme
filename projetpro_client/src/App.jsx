@@ -58,7 +58,8 @@ function App() {
           payload: result.data,
         });
       } catch (error) {
-        setError(error.response.data.error);
+        console.log(error)
+        // setError(error.response.data.error);
       }
     };
     axiosData();
@@ -66,6 +67,7 @@ function App() {
 // console.log("app state", state)
 // console.log("authcontext", AuthContext.state)
   return (
+    <div>
     <AlertProvider template={AlertTemplate} {...options}>
       <AuthContext.Provider
         value={{
@@ -108,6 +110,7 @@ function App() {
         </Router>
       </AuthContext.Provider>
     </AlertProvider>
+    </div>
   );
 }
 

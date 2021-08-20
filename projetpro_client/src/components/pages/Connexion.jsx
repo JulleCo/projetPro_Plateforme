@@ -81,6 +81,9 @@ export function Connexion(props) {
         />
       </div>
       <div>{signin.errorMessage}</div>
+      {/* <button className="actionBtn signinForm_button" type="submit" >
+        Valider      
+      </button> */}
       <ButtonAction className="signinForm_button" type="submit" name="Valider"/>
     </form>
   );
